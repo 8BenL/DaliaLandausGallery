@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dalia Landau's Gallery</title>
+<meta property="og:title" content="Dalia Landau's Gallery">
+<meta property="og:description" content="A collection of original paintings and sketches">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://snazzy-heliotrope-2e87cf.netlify.app">
+<meta property="og:image" content="https://snazzy-heliotrope-2e87cf.netlify.app/images/%D7%90%D7%93%D7%95%D7%9E%D7%95%D7%AA%20%20100-70.JPG">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #f9f3ec;
+    font-family: 'Georgia', serif;
+    color: #3d2b1a;
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 44px;
+    border-bottom: 1px solid #e8d5c0;
+    background: #f9f3ec;
+    position: sticky; top: 0; z-index: 100;
+  }
+  .nav-left, .nav-right { display: flex; gap: 28px; }
+  nav a {
+    font-size: 13px; letter-spacing: 3px;
+    color: #9a7a5a; text-transform: uppercase;
+    text-decoration: none; cursor: pointer;
+    transition: color 0.2s;
+  }
+  nav a:hover { color: #3d2b1a; }
+
+  /* ── HERO ── */
+  .hero { text-align: center; padding: 26px 20px 18px; }
+  .hero-inner {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .hero h1 {
+    font-size: 42px; color: #3d2b1a;
+    letter-spacing: 6px; font-weight: normal;
+    white-space: nowrap;
+  }
+  .hero-rule {
+    display: flex; align-items: center;
+    gap: 10px; margin-top: 10px;
+  }
+  .hero-rule .line   { flex: 1; height: 1px; background: #c4a882; }
+  .hero-rule .diamond {
+    width: 5px; height: 5px; background: #c4a882;
+    transform: rotate(45deg); flex-shrink: 0;
+  }
+
+  /* ── CAROUSEL ── */
+  .carousel-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    padding: 22px 20px 28px;
+    min-height: calc(100vh - 140px);
+  }
+  .carousel-arrow {
+    width: 40px; height: 40px; flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    border: 1px solid #c4a882; border-radius: 50%;
+    color: #9a7a5a; font-size: 16px;
+    cursor: pointer; background: transparent;
+    transition: all 0.2s; -webkit-user-select: none; user-select: none;
+    align-self: center;
+  }
+  .carousel-arrow:hover { background: #c4a882; color: #fff; }
+
+  .carousel-track {
+    display: flex; gap: 16px;
+    align-items: flex-start;
+    justify-content: center;
+    flex: 1;
+    overflow: hidden;
+  }
+  .gallery-card {
+    flex: 1; min-width: 0;
+    display: flex; flex-direction: column;
+    cursor: pointer;
+    transition: opacity 0.3s ease;
+  }
+  .gallery-card.fading { opacity: 0; }
+  .gallery-card .img-frame {
+    border: 8px solid #e8d5c0;
+    box-shadow: 3px 3px 16px rgba(61,43,26,0.13);
+    overflow: hidden;
+    transition: box-shadow 0.22s, transform 0.22s;
+  }
+  .gallery-card:hover .img-frame {
+    box-shadow: 0 10px 32px rgba(61,43,26,0.22);
+    transform: translateY(-3px);
+  }
+  .gallery-card .img-frame img {
+    width: 100%; height: 360px;
+    object-fit: contain; display: block;
+    background: #f9f3ec;
+    transition: transform 0.35s;
+    pointer-events: none;
+  }
+  .gallery-card:hover .img-frame img { transform: scale(1.04); }
+  .gallery-card .painting-name {
+    text-align: center;
+    font-size: 15px; font-style: italic;
+    color: #9a7a5a; letter-spacing: 1px;
+    padding-top: 11px;
+  }
+
+  /* ── SCROLL HINT ── */
+  .scroll-hint {
+    text-align: center; padding: 0 0 28px;
+    font-size: 9px; letter-spacing: 3px;
+    text-transform: uppercase; color: #c4a882;
+    animation: nudge 2.2s ease-in-out infinite;
+  }
+  @keyframes nudge {
+    0%, 100% { transform: translateY(0); opacity: 0.6; }
+    50%       { transform: translateY(5px); opacity: 1; }
+  }
+
+  /* ── DIVIDER ── */
+  .section-divider {
+    display: flex; align-items: center;
+    gap: 18px; padding: 0 44px 36px;
+  }
+  .section-divider .line  { flex: 1; height: 1px; background: #e8d5c0; }
+  .section-divider .label {
+    font-size: 9px; letter-spacing: 4px;
+    text-transform: uppercase; color: #c4a882; white-space: nowrap;
+  }
+
+  /* ── FOLDERS ── */
+  .folders-section {
+    display: flex; flex-wrap: wrap;
+    justify-content: center;
+    gap: 24px; padding: 0 44px 60px;
+  }
+  .folder-card { width: 220px; display: flex; flex-direction: column; cursor: pointer; }
+  .folder-card .f-label {
+    font-size: 9px; letter-spacing: 4px;
+    text-transform: uppercase; color: #7a5c3a;
+    padding-bottom: 8px; text-align: center;
+  }
+  .folder-card .f-img-wrap {
+    border: 7px solid #e8d5c0;
+    box-shadow: 3px 3px 12px rgba(61,43,26,0.1);
+    overflow: hidden;
+    transition: box-shadow 0.22s, transform 0.22s;
+  }
+  .folder-card:hover .f-img-wrap {
+    box-shadow: 0 8px 28px rgba(61,43,26,0.2);
+    transform: translateY(-2px);
+  }
+  .folder-card .f-img-wrap img {
+    width: 100%; height: 180px;
+    object-fit: contain; display: block;
+    background: #f9f3ec;
+    transition: transform 0.35s;
+  }
+  .folder-card .f-img-wrap .f-placeholder {
+    width: 100%; height: 180px;
+    background: #efe4d8;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 28px;
+  }
+  .folder-card:hover .f-img-wrap img { transform: scale(1.04); }
+  .folder-card .f-count {
+    font-size: 9px; color: #b08060; letter-spacing: 2px;
+    text-transform: uppercase; text-align: center; padding-top: 8px;
+  }
+
+  /* ── LIGHTBOX ── */
+  .lightbox {
+    display: none; position: fixed; inset: 0;
+    background: rgba(20,11,4,0.93); z-index: 999;
+    flex-direction: column; align-items: center; justify-content: center;
+  }
+  .lightbox.open { display: flex; }
+  .lb-close {
+    position: absolute; top: 18px; right: 24px;
+    color: #c4a882; font-size: 28px;
+    cursor: pointer; transition: color 0.2s; z-index: 2;
+    padding: 8px;
+  }
+  .lb-close:hover { color: #fff; }
+  .lb-folder-name {
+    position: absolute; top: 24px; left: 0; right: 0;
+    text-align: center; font-size: 10px;
+    letter-spacing: 4px; text-transform: uppercase; color: #9a7a5a;
+  }
+  .lb-stage { display: flex; align-items: center; justify-content: center; padding: 0 20px; }
+  .lb-arrow {
+    position: absolute; top: 50%; transform: translateY(-50%);
+    width: 42px; height: 42px;
+    display: flex; align-items: center; justify-content: center;
+    border: 1px solid #5a4030; border-radius: 50%;
+    color: #9a7a5a; font-size: 18px; cursor: pointer;
+    background: rgba(20,11,4,0.6);
+    transition: all 0.2s; -webkit-user-select: none; user-select: none;
+  }
+  #lb-prev { left: 24px; }
+  #lb-next { right: 24px; }
+  .lb-arrow:hover { border-color: #c4a882; color: #c4a882; }
+  .lb-img-wrap {
+    border: 10px solid #2e1e10;
+    box-shadow: 0 8px 60px rgba(0,0,0,0.7);
+    touch-action: pan-y;
+    display: flex; align-items: center; justify-content: center;
+    background: #1a0d06;
+  }
+  .lb-img-wrap img {
+    max-width: 80vw; max-height: 70vh;
+    width: auto; height: auto;
+    object-fit: contain; display: block;
+    transition: opacity 0.28s ease;
+    pointer-events: none;
+  }
+  .lb-img-wrap img.fading { opacity: 0; }
+  .lb-info { text-align: center; margin-top: 14px; }
+  .lb-title { font-size: 15px; color: #e8d5c0; letter-spacing: 1px; font-style: italic; }
+  .lb-meta  { font-size: 9px; color: #9a7a5a; letter-spacing: 3px; text-transform: uppercase; margin-top: 5px; }
+  .lb-dots  { display: flex; gap: 8px; margin-top: 10px; justify-content: center; }
+  .lb-dot   { width: 8px; height: 8px; border-radius: 50%; background: #3a2518; cursor: pointer; transition: background 0.2s; }
+  .lb-dot.active { background: #c4a882; }
+
+  /* ── MOBILE ── */
+  @media (max-width: 600px) {
+    nav { padding: 12px 20px; }
+    nav a { font-size: 10px; letter-spacing: 2px; }
+    .nav-left, .nav-right { gap: 16px; }
+
+    .hero { padding: 18px 16px 14px; }
+    .hero h1 { font-size: 26px; letter-spacing: 3px; white-space: normal; }
+
+    .carousel-section { padding: 16px 8px 20px; gap: 8px; min-height: calc(100vh - 120px); }
+    .carousel-arrow { width: 34px; height: 34px; font-size: 14px; }
+    .gallery-card .img-frame img { height: 240px; }
+    .gallery-card .painting-name { font-size: 13px; }
+    .gallery-card .img-frame { border-width: 5px; }
+
+    .section-divider { padding: 0 20px 24px; }
+    .folders-section { gap: 16px; padding: 0 16px 40px; }
+    .folder-card { width: calc(50% - 8px); }
+    .folder-card .f-img-wrap img,
+    .folder-card .f-img-wrap .f-placeholder { height: 130px; }
+
+    .lb-stage { gap: 10px; padding: 0 8px; }
+    .lb-arrow { width: 36px; height: 36px; font-size: 15px; }
+    .lb-img-wrap { border-width: 5px; }
+    .lb-img-wrap img { max-width: 90vw; max-height: 60vh; }
+    .lb-title { font-size: 13px; }
+  }
+
+  /* ── TABLET ── */
+  @media (min-width: 601px) and (max-width: 900px) {
+    nav { padding: 14px 28px; }
+    .carousel-section { padding: 18px 16px 24px; }
+    .gallery-card .img-frame img { height: 300px; }
+    .folders-section { padding: 0 28px 50px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-left"><a>About</a><a>Contact</a></div>
+  <div class="nav-right"><a>Exhibition</a></div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-inner">
+    <h1>Dalia Landau's Gallery</h1>
+    <div class="hero-rule">
+      <div class="line"></div><div class="diamond"></div><div class="line"></div>
+    </div>
+  </div>
+</div>
+
+<!-- CAROUSEL -->
+<div class="carousel-section">
+  <button class="carousel-arrow" id="c-prev" type="button">&#8592;</button>
+  <div class="carousel-track" id="carousel-track"></div>
+  <button class="carousel-arrow" id="c-next" type="button">&#8594;</button>
+</div>
+
+<!-- SCROLL HINT -->
+<div class="scroll-hint">&#8595; &nbsp; Collections</div>
+
+<!-- DIVIDER -->
+<div class="section-divider">
+  <div class="line"></div>
+  <div class="label">Collections by Subject</div>
+  <div class="line"></div>
+</div>
+
+<!-- FOLDERS -->
+<div class="folders-section" id="folders-section"></div>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox">
+  <div class="lb-folder-name" id="lb-folder-name"></div>
+  <span class="lb-close" id="lb-close">&#x2715;</span>
+  <div class="lb-stage">
+    <button class="lb-arrow" id="lb-prev" type="button">&#8592;</button>
+    <div>
+      <div class="lb-img-wrap" id="lb-img-wrap"><img id="lb-img" src="" alt=""></div>
+      <div class="lb-info">
+        <div class="lb-title" id="lb-title"></div>
+        <div class="lb-meta"  id="lb-meta"></div>
+      </div>
+      <div class="lb-dots" id="lb-dots"></div>
+    </div>
+    <button class="lb-arrow" id="lb-next" type="button">&#8594;</button>
+  </div>
+</div>
+
+<script>
+const allPaintings = [
+  { src: 'images/11%20%D7%91%D7%A1%D7%A4%D7%98%D7%9E%D7%91%D7%A8%20%20%20%D7%90%D7%A7%D7%A8%D7%99%D7%9C%D7%99%D7%A7%20%D7%A2%D7%9C%20%D7%A7%D7%A0%D7%91%D7%A1%20%20100-70%20%D7%A1%D7%9E.JPG', title: "11 בספטמבר   אקריליק על קנבס  100-70 סמ", folder: 'Collection 1' },
+  { src: 'images/120-120.JPG', title: "120-120", folder: 'Collection 2' },
+  { src: 'images/120-160.JPG', title: "120-160", folder: 'Collection 1' },
+  { src: 'images/120-90%20-%20Copy.JPG', title: "120-90 - Copy", folder: 'Collection 2' },
+  { src: 'images/197.JPG', title: "197", folder: 'Collection 1' },
+  { src: 'images/210-160%20%20%D7%91.jpg', title: "210-160  ב", folder: 'Collection 2' },
+  { src: 'images/210-160.jpg', title: "210-160", folder: 'Collection 1' },
+  { src: 'images/225.JPG', title: "225", folder: 'Collection 2' },
+  { src: 'images/226.JPG', title: "226", folder: 'Collection 1' },
+  { src: 'images/334.JPG', title: "334", folder: 'Collection 2' },
+  { src: 'images/378.JPG', title: "378", folder: 'Collection 1' },
+  { src: 'images/60-120.jpg', title: "60-120", folder: 'Collection 2' },
+  { src: 'images/dalia00002-2.jpg', title: "dalia00002-2", folder: 'Collection 1' },
+  { src: 'images/lando_00009.jpg', title: "lando_00009", folder: 'Collection 2' },
+  { src: 'images/Library%20-%20249.jpg', title: "Library - 249", folder: 'Collection 1' },
+  { src: 'images/Library%20-%20255.jpg', title: "Library - 255", folder: 'Collection 2' },
+  { src: 'images/Library%20-%20313.jpg', title: "Library - 313", folder: 'Collection 1' },
+  { src: 'images/Library%20-%20314.jpg', title: "Library - 314", folder: 'Collection 2' },
+  { src: 'images/Untitled00029.jpg', title: "Untitled00029", folder: 'Collection 1' },
+  { src: 'images/Untitled00030.jpg', title: "Untitled00030", folder: 'Collection 2' },
+  { src: 'images/Untitled00033.jpg', title: "Untitled00033", folder: 'Collection 1' },
+  { src: 'images/Untitled00257.jpg', title: "Untitled00257", folder: 'Sketches' },
+  { src: 'images/Untitled00259.jpg', title: "Untitled00259", folder: 'Sketches' },
+  { src: 'images/Untitled00260.jpg', title: "Untitled00260", folder: 'Sketches' },
+  { src: 'images/Untitled00261.jpg', title: "Untitled00261", folder: 'Sketches' },
+  { src: 'images/Untitled00262.jpg', title: "Untitled00262", folder: 'Sketches' },
+  { src: 'images/Untitled00264.jpg', title: "Untitled00264", folder: 'Sketches' },
+  { src: 'images/Untitled00265.jpg', title: "Untitled00265", folder: 'Sketches' },
+  { src: 'images/Untitled00266.jpg', title: "Untitled00266", folder: 'Sketches' },
+  { src: 'images/Untitled00267.jpg', title: "Untitled00267", folder: 'Sketches' },
+  { src: 'images/Untitled00268.jpg', title: "Untitled00268", folder: 'Sketches' },
+  { src: 'images/Untitled00269.jpg', title: "Untitled00269", folder: 'Sketches' },
+  { src: 'images/%D7%90%D7%93%D7%95%D7%9E%D7%95%D7%AA%20%20100-70.JPG', title: "אדומות  100-70", folder: 'Collection 1' },
+  { src: 'images/%D7%90%D7%95%D7%93%D7%99%2020-13.JPG', title: "אודי 20-13", folder: 'Sketches' },
+  { src: 'images/%D7%90%D7%95%D7%A8%D7%99%D7%99%D7%A0%D7%98%20%D7%90%D7%A7%D7%A8%D7%99%D7%9C%D7%99%D7%A7%20%D7%A2%D7%9C%20%D7%A7%D7%A0%D7%91%D7%A1%2060-45%20%D7%A1%D7%9E.JPG', title: "אוריינט אקריליק על קנבס 60-45 סמ", folder: 'Collection 1' },
+  { src: 'images/%D7%90%D7%97%D7%93%20%D7%91%D7%90%D7%95%D7%A8%20%20100-80.JPG', title: "אחד באור  100-80", folder: 'Collection 2' },
+  { src: 'images/%D7%90%D7%9E%D7%94%D7%95%D7%AA%20%20100-90.jpg', title: "אמהות  100-90", folder: 'Collection 1' },
+  { src: 'images/%D7%90%D7%A0%D7%A9%D7%99%D7%9D%20%D7%9B%D7%AA%D7%95%D7%9E%D7%99%D7%9D%20%20%20%D7%90%D7%A7%D7%A8%D7%99%D7%9C%D7%99%D7%A7%20%D7%A2%D7%9C%20%D7%A7%D7%A0%D7%91%D7%A1%20%20100-100%20%D7%A1%D7%9E.JPG', title: "אנשים כתומים   אקריליק על קנבס  100-100 סמ", folder: 'Collection 2' },
+  { src: 'images/%D7%90%D7%A0%D7%A9%D7%99%D7%9D%20%D7%A2%D7%92%D7%95%D7%9C%D7%99%D7%9D%20100-100.JPG', title: "אנשים עגולים 100-100", folder: 'Collection 1' },
+  { src: 'images/%D7%90%D7%A0%D7%A9%D7%99%D7%9D%20%D7%A9%D7%97%D7%95%D7%A8%20%D7%95%D7%9C%D7%91%D7%9F%20%20%D7%90%D7%A7%D7%A8%D7%99%D7%9C%D7%99%D7%A7%20%20%20%20120-100%20%D7%A1%D7%9E.JPG', title: "אנשים שחור ולבן  אקריליק    120-100 סמ", folder: 'Collection 2' },
+  { src: 'images/%D7%90%D7%A9%D7%94%20%20100-100.JPG', title: "אשה  100-100", folder: 'Collection 1' },
+  { src: 'images/%D7%90%D7%A9%D7%94%20%20%D7%91%D7%97%D7%9C%D7%95%D7%9F%20%2060-100.jpg', title: "אשה  בחלון  60-100", folder: 'Collection 2' },
+  { src: 'images/%D7%90%D7%A9%D7%94%20%D7%91%D7%90%D7%93%D7%95%D7%9D%20120-80.JPG', title: "אשה באדום 120-80", folder: 'Collection 2' },
+  { src: 'images/%D7%90%D7%A9%D7%94%20%D7%91%D7%90%D7%95%D7%A8%20%20100-75.JPG', title: "אשה באור  100-75", folder: 'Collection 1' },
+  { src: 'images/%D7%90%D7%A9%D7%94%20%D7%91%D7%9B%D7%AA%D7%95%D7%9D%20%20100-75.JPG', title: "אשה בכתום  100-75", folder: 'Collection 2' },
+  { src: 'images/%D7%90%D7%A9%D7%94%20%D7%91%D7%9E%D7%A8%D7%90%D7%94%20%20120-180.jpg', title: "אשה במראה  120-180", folder: 'Collection 1' },
+  { src: 'images/%D7%90%D7%A9%D7%94%20%D7%91%D7%A8%D7%A9%D7%AA%20100-75.JPG', title: "אשה ברשת 100-75", folder: 'Sculptures' },
+  { src: 'images/%D7%90%D7%A9%D7%94%20%D7%97%D7%96%D7%A7%D7%94%20%20120-60.jpg', title: "אשה חזקה  120-60", folder: 'Collection 1' },
+  { src: 'images/%D7%90%D7%A9%D7%94%20%D7%99%D7%95%D7%A9%D7%91%D7%AA%20%20%D7%92%D7%99%D7%A7%D7%9C%D7%94%20%20%28100-70%29%203.jpg', title: "אשה יושבת  גיקלה  (100-70) 3", folder: 'Sculptures' },
+  { src: 'images/%D7%90%D7%A9%D7%94%20%D7%9E%D7%90%D7%97%D7%95%D7%A8%D7%99%20%D7%95%D7%99%D7%9C%D7%95%D7%9F%20%20120-60.JPG', title: "אשה מאחורי וילון  120-60", folder: 'Collection 1' },
+  { src: 'images/%D7%91%D7%98%D7%A8%D7%99%D7%91%D7%95%D7%A0%D7%94%20%20100-120.JPG', title: "בטריבונה  100-120", folder: 'Collection 2' },
+  { src: 'images/%D7%91%D7%9C%D7%95%D7%9F%20%D7%9B%D7%97%D7%95%D7%9C%20%2070-120.JPG', title: "בלון כחול  70-120", folder: 'Collection 1' },
+  { src: 'images/%D7%91%D7%9E%D7%A4%D7%A2%D7%9C%20100-80.JPG', title: "במפעל 100-80", folder: 'Collection 2' },
+  { src: 'images/%D7%91%D7%A4%D7%A0%D7%99%D7%9D%20%D7%90%D7%95%20%D7%91%D7%97%D7%95%D7%A5%2080-100.JPG', title: "בפנים או בחוץ 80-100", folder: 'Collection 1' },
+  { src: 'images/%D7%91%D7%A7%D7%99%D7%91%D7%95%D7%A5%20%20%20%D7%90%D7%A7%D7%A8%D7%99%D7%9C%D7%99%D7%A7%20%D7%A2%D7%9C%20%D7%A7%D7%A0%D7%91%D7%A1%20%2050-60%20%D7%A1%D7%9E.JPG', title: "בקיבוץ   אקריליק על קנבס  50-60 סמ", folder: 'Collection 2' },
+  { src: 'images/%D7%91%D7%A8%D7%95%D7%A9%D7%99%D7%9D%20%20%D7%90%D7%A7%D7%A8%D7%99%D7%9C%D7%99%D7%A7%20%D7%A2%D7%9C%20%D7%A7%D7%A0%D7%91%D7%A1%20%2080-100%20%D7%A1%D7%9E.JPG', title: "ברושים  אקריליק על קנבס  80-100 סמ", folder: 'Collection 1' },
+  { src: 'images/%D7%91%D7%A9%D7%AA%D7%99%20%D7%99%D7%93%D7%99%20%D7%97%D7%99%D7%91%D7%A8%D7%AA%D7%99%20%20160-115.JPG', title: "בשתי ידי חיברתי  160-115", folder: 'Collection 2' },
+  { src: 'images/%D7%91%D7%AA%D7%97%D7%AA%D7%99%D7%AA%20100-100.jpg', title: "בתחתית 100-100", folder: 'Collection 1' },
+  { src: 'images/%D7%91%D7%AA%D7%A2%D7%A8%D7%95%D7%9B%D7%94%20%2060-90.jpg', title: "בתערוכה  60-90", folder: 'Collection 2' },
+  { src: 'images/%D7%92%D7%A8%D7%A4%D7%99%D7%98%D7%99.jpg', title: "גרפיטי", folder: 'Collection 1' },
+  { src: 'images/%D7%93%D7%95%D7%9E%D7%9D%20%20%D7%90%D7%A7%D7%A8%D7%99%D7%9C%D7%99%D7%A7%20%D7%A2%D7%9C%20%D7%A7%D7%A0%D7%91%D7%A1%20%2040-30%20%D7%A1%D7%9E.JPG', title: "דומם  אקריליק על קנבס  40-30 סמ", folder: 'Collection 2' },
+  { src: 'images/%D7%94%D7%93%D7%99%D7%99%D7%92%20%20120-120.jpg', title: "הדייג  120-120", folder: 'Collection 1' },
+  { src: 'images/%D7%94%D7%95%D7%95%D7%90%D7%A0%D7%94%2080-100.JPG', title: "הוואנה 80-100", folder: 'Collection 2' },
+  { src: 'images/%D7%94%D7%95%D7%9C%D7%9A%20%D7%91%D7%A9%D7%93%D7%95%D7%AA%20%2040-50.jpg', title: "הולך בשדות  40-50", folder: 'Collection 1' },
+  { src: 'images/%D7%94%D7%A8%D7%99%D7%95%D7%9F%2024-20.JPG', title: "הריון 24-20", folder: 'Sculptures' },
+  { src: 'images/%D7%94%D7%A9%D7%AA%D7%A7%D7%A4%D7%95%D7%AA%20%20%D7%90%D7%A7%D7%A8%D7%99%D7%9C%D7%99%D7%A7%20%D7%A2%D7%9C%20%D7%A7%D7%94%D7%91%D7%A1%20%2050-70%20%D7%A1%D7%9E.jpg', title: "השתקפות  אקריליק על קהבס  50-70 סמ", folder: 'Collection 1' },
+  { src: 'images/%D7%94%D7%AA%D7%A8%D7%97%D7%A9%D7%95%D7%AA%20%20120-60.JPG', title: "התרחשות  120-60", folder: 'Collection 2' },
+  { src: 'images/%D7%95%D7%A8%D7%94%20%2040-30.jpg', title: "ורה  40-30", folder: 'Collection 1' },
+  { src: 'images/%D7%97%D7%95%D7%A4%D7%99%D7%9D%2050-100.jpg', title: "חופים 50-100", folder: 'Collection 2' },
+  { src: 'images/%D7%97%D7%99%D7%98%D7%94%20%20100-100.jpg', title: "חיטה  100-100", folder: 'Collection 1' },
+  { src: 'images/%D7%97%D7%9C%D7%9C%D7%99%D7%9D%20%20210-180.JPG', title: "חללים  210-180", folder: 'Collection 2' },
+  { src: 'images/%D7%97%D7%9E%D7%A0%D7%99%D7%95%D7%AA%20160-100.JPG', title: "חמניות 160-100", folder: 'Collection 1' },
+  { src: 'images/%D7%97%D7%A6%D7%95%D7%99%D7%94%20%20%20%20%20%20%20%20%20120-100.JPG', title: "חצויה         120-100", folder: 'Collection 2' },
+  { src: 'images/%D7%99%D7%95%D7%92%D7%94%2050-100.jpg', title: "יוגה 50-100", folder: 'Collection 1' },
+  { src: 'images/%D7%99%D7%95%D7%A6%D7%A8%D7%AA%20%D7%91%D7%A1%D7%98%D7%95%D7%93%D7%99%D7%95%20120-80.JPG', title: "יוצרת בסטודיו 120-80", folder: 'Collection 2' },
+  { src: 'images/%D7%99%D7%9D%20%2090-130.jpg', title: "ים  90-130", folder: 'Collection 1' },
+  { src: 'images/%D7%99%D7%9D%20%D7%9C%D7%91%D7%9F%20%20%D7%90%D7%A7%D7%A8%D7%99%D7%9C%D7%99%D7%A7%20%D7%A2%D7%9C%20%D7%A7%D7%A0%D7%91%D7%A1%20%20100-100%20%D7%A1%D7%9E.JPG', title: "ים לבן  אקריליק על קנבס  100-100 סמ", folder: 'Collection 2' },
+  { src: 'images/%D7%99%D7%9D%20%D7%A9%D7%9C%20%D7%9E%D7%95%D7%95%D7%AA%20160-160.jpg', title: "ים של מוות 160-160", folder: 'Collection 1' },
+  { src: 'images/%D7%99%D7%A4%D7%95%20%2030-40.JPG', title: "יפו  30-40", folder: 'Collection 2' },
+  { src: 'images/%D7%99%D7%A8%D7%95%D7%A9%D7%9C%D7%99%D7%9D%20%20150-110.JPG', title: "ירושלים  150-110", folder: 'Collection 1' },
+  { src: 'images/%D7%99%D7%A9%20%D7%9E%D7%A7%D7%95%D7%9D%20%2070-100.JPG', title: "יש מקום  70-100", folder: 'Collection 2' },
+  { src: 'images/%D7%9B%D7%91%D7%99%D7%A9%20%20%D7%94%D7%97%D7%95%D7%A3%20%20%D7%90%D7%A7%D7%A8%D7%99%D7%9C%D7%99%D7%A7%20%D7%A2%D7%9C%20%D7%A7%D7%A0%D7%91%D7%A1%20%20120-80%20%D7%A1%D7%9E.JPG', title: "כביש  החוף  אקריליק על קנבס  120-80 סמ", folder: 'Collection 1' },
+  { src: 'images/%D7%9B%D7%91%D7%A9%D7%99%D7%9D%20%20100-80.JPG', title: "כבשים  100-80", folder: 'Collection 2' },
+  { src: 'images/%D7%9B%D7%95%D7%91%D7%A1%D7%95%D7%AA%20%20100-200.jpg', title: "כובסות  100-200", folder: 'Collection 1' },
+  { src: 'images/%D7%9B%D7%97%D7%95%D7%9C%20160-150.JPG', title: "כחול 160-150", folder: 'Collection 2' },
+  { src: 'images/%D7%9B%D7%9C%20%D7%90%D7%97%D7%AA%20%D7%91%D7%A9%D7%9C%D7%94%20%202%20%20%20%20100-100.JPG', title: "כל אחת בשלה  2    100-100", folder: 'Collection 1' },
+  { src: 'images/%D7%9B%D7%9C%20%D7%90%D7%97%D7%AA%20%D7%91%D7%A9%D7%9C%D7%94%201%20%20%20100-100.jpg', title: "כל אחת בשלה 1   100-100", folder: 'Collection 2' },
+  { src: 'images/%D7%9B%D7%A1%D7%90%20%20120-100.jpg', title: "כסא  120-100", folder: 'Collection 1' },
+  { src: 'images/%D7%9B%D7%AA%D7%95%D7%9D%20%20%D7%A8%D7%99%D7%A9%D7%95%D7%9D%20%D7%A4%D7%97%D7%9D%20%20%2070-50%20%D7%A1%D7%9E.JPG', title: "כתום  רישום פחם   70-50 סמ", folder: 'Collection 2' },
+  { src: 'images/%D7%9C%D7%95%D7%A1%D7%99%202.jpg', title: "לוסי 2", folder: 'Collection 1' },
+  { src: 'images/%D7%9C%D7%95%D7%A1%D7%99.jpg', title: "לוסי", folder: 'Collection 2' },
+  { src: 'images/%D7%9C%D7%9C%D7%90%20%D7%9B%D7%95%D7%AA%D7%A8%D7%AA%20%20120-120.jpg', title: "ללא כותרת  120-120", folder: 'Collection 1' },
+  { src: 'images/%D7%9C%D7%9C%D7%90%20%D7%9B%D7%95%D7%AA%D7%A8%D7%AA%2090-150.JPG', title: "ללא כותרת 90-150", folder: 'Collection 2' },
+  { src: 'images/%D7%9E%D7%91%D7%98%20%D7%98%D7%9C%D7%A1%D7%A7%D7%95%D7%A4%D7%99%20%2070-70.jpg', title: "מבט טלסקופי  70-70", folder: 'Collection 1' },
+  { src: 'images/%D7%9E%D7%94%20%D7%91%D7%99%D7%A0%D7%A0%D7%95%20%20120-60.JPG', title: "מה ביננו  120-60", folder: 'Collection 2' },
+  { src: 'images/%D7%9E%D7%95%D7%93%D7%9C%20%D7%91%D7%95%D7%A8%D7%95%D7%93%20100-100.JPG', title: "מודל בורוד 100-100", folder: 'Collection 1' },
+  { src: 'images/%D7%9E%D7%95%D7%A4%D7%A9%D7%98%20%2070-100.jpg', title: "מופשט  70-100", folder: 'Collection 2' },
+  { src: 'images/%D7%9E%D7%97%D7%95%D7%94%20%D7%9C%D7%9E%D7%90%D7%98%D7%99%D7%A1%20%20%D7%90%D7%A7%D7%A8%D7%99%D7%9C%D7%99%D7%A7%20%D7%A2%D7%9C%20%D7%A7%D7%A0%D7%91%D7%A1%20%20100-100%20%D7%A1%D7%9E.JPG', title: "מחוה למאטיס  אקריליק על קנבס  100-100 סמ", folder: 'Collection 1' },
+  { src: 'images/%D7%9E%D7%9B%D7%95%D7%A0%D7%A1%D7%AA%20120-80.JPG', title: "מכונסת 120-80", folder: 'Collection 2' },
+  { src: 'images/%D7%9E%D7%9E%D7%A2%D7%95%D7%A3%20%D7%94%D7%A6%D7%99%D7%A4%D7%95%D7%A8%20%20100-90.JPG', title: "ממעוף הציפור  100-90", folder: 'Collection 1' },
+  { src: 'images/%D7%9E%D7%9E%D7%AA%D7%99%D7%A7%D7%99%D7%9D%20%D7%A1%D7%95%D7%93%20%2080-100.JPG', title: "ממתיקים סוד  80-100", folder: 'Collection 2' },
+  { src: 'images/%D7%9E%D7%A1%D7%A2%20%D7%91%D7%A1%D7%99%D7%9F%20%2070-100.JPG', title: "מסע בסין  70-100", folder: 'Collection 1' },
+  { src: 'images/%D7%9E%D7%A1%D7%A2%20%D7%91%D7%A1%D7%99%D7%9F%202%20%2070-100.JPG', title: "מסע בסין 2  70-100", folder: 'Collection 2' },
+  { src: 'images/%D7%9E%D7%A4%D7%9C%20%20100-100.jpg', title: "מפל  100-100", folder: 'Collection 1' },
+  { src: 'images/%D7%9E%D7%A8%D7%A4%D7%A1%D7%95%D7%AA%20%20%D7%AA%D7%9C-%D7%90%D7%91%D7%99%D7%91%20004.jpg', title: "מרפסות  תל-אביב 004", folder: 'Collection 2' },
+  { src: 'images/%D7%9E%D7%A8%D7%A4%D7%A1%D7%95%D7%AA%20%20%D7%AA%D7%9C-%D7%90%D7%91%D7%99%D7%91%20005.jpg', title: "מרפסות  תל-אביב 005", folder: 'Collection 1' },
+  { src: 'images/%D7%9E%D7%A8%D7%A4%D7%A1%D7%AA%20%D7%9E%D7%95%D7%9C%20%D7%9E%D7%A8%D7%A4%D7%A1%D7%AA%20120-70.jpg', title: "מרפסת מול מרפסת 120-70", folder: 'Collection 2' },
+  { src: 'images/%D7%9E%D7%A9%D7%A4%D7%97%D7%94%20%20%D7%98%D7%9B%D7%A0%D7%99%D7%A7%D7%94%20%D7%9E%D7%A2%D7%95%D7%A8%D7%91%D7%AA%20%D7%A7%D7%95%D7%9C%D7%90%D7%96%20%2C%D7%A8%D7%99%D7%A9%D7%95%D7%9D%20%D7%95%D7%90%D7%A7%D7%A8%D7%99%D7%9C%D7%99%D7%A7%20%20%20100-70%20%D7%A1%D7%9E.JPG', title: "משפחה  טכניקה מעורבת קולאז ,רישום ואקריליק   100-70 סמ", folder: 'Collection 1' },
+  { src: 'images/%D7%9E%D7%A9%D7%A4%D7%97%D7%94%20%D7%92%D7%93%D7%95%D7%9C%D7%94%20%20%D7%90%D7%A7%D7%A8%D7%99%D7%9C%D7%99%D7%A7%20%20%D7%A2%D7%9C%20%D7%A7%D7%A0%D7%91%D7%A1%20%2075-100%20%D7%A1%D7%9E.JPG', title: "משפחה גדולה  אקריליק  על קנבס  75-100 סמ", folder: 'Collection 2' },
+  { src: 'images/%D7%9E%D7%A9%D7%A4%D7%97%D7%94%20%D7%A7%D7%98%D7%A0%D7%94%20%20%D7%90%D7%A7%D7%A8%D7%99%D7%9C%D7%99%D7%A7%20%D7%A2%D7%9C%20%D7%A7%D7%A0%D7%91%D7%A1%20%20%2040-60%20%D7%A1%D7%9E.JPG', title: "משפחה קטנה  אקריליק על קנבס   40-60 סמ", folder: 'Collection 1' },
+  { src: 'images/%D7%9E%D7%AA%D7%A2%D7%9E%D7%9C%D7%95%D7%AA%20%20100-100.jpg', title: "מתעמלות  100-100", folder: 'Collection 2' },
+  { src: 'images/%D7%A0%D7%93%D7%99%D7%93%20%D7%A2%D7%93%D7%99%D7%9F%20%2070-100.JPG', title: "נדיד עדין  70-100", folder: 'Collection 1' },
+  { src: 'images/%D7%A0%D7%95%D7%95%D7%94%20%D7%A6%D7%93%D7%A7%202%20%2060-90.jpg', title: "נווה צדק 2  60-90", folder: 'Collection 2' },
+  { src: 'images/%D7%A0%D7%95%D7%A3%2060-40.jpg', title: "נוף 60-40", folder: 'Collection 1' },
+  { src: 'images/%D7%A0%D7%95%D7%A3%20%D7%95%D7%A8%D7%95%D7%93%20%2050-60.JPG', title: "נוף ורוד  50-60", folder: 'Collection 2' },
+  { src: 'images/%D7%A0%D7%95%D7%A3%20%D7%9E%D7%9E%D7%A8%D7%A4%D7%A1%D7%AA%20120-100.jpg', title: "נוף ממרפסת 120-100", folder: 'Collection 1' },
+  { src: 'images/%D7%A0%D7%98%D7%9C%D7%99%20%20120-90.JPG', title: "נטלי  120-90", folder: 'Collection 2' },
+  { src: 'images/%D7%A0%D7%A9%D7%99%D7%9D%20%D7%91%D7%90%D7%93%D7%95%D7%9D%20%20%D7%90%D7%A7%D7%A8%D7%99%D7%9C%D7%99%D7%A7%20%D7%A2%D7%9C%20%D7%A7%D7%A0%D7%91%D7%A1%20%20100-70%20%D7%A1%D7%9E.JPG', title: "נשים באדום  אקריליק על קנבס  100-70 סמ", folder: 'Collection 1' },
+  { src: 'images/%D7%A0%D7%A9%D7%99%D7%9D%20%D7%91%D7%99%D7%9D%20%2095-135.JPG', title: "נשים בים  95-135", folder: 'Collection 2' },
+  { src: 'images/%D7%A0%D7%A9%D7%99%D7%9D%20%D7%A4%D7%A1%D7%99%D7%9D%20%20100-150.JPG', title: "נשים פסים  100-150", folder: 'Collection 1' },
+  { src: 'images/%D7%A0%D7%A9%D7%99%D7%9D%20%D7%A4%D7%A1%D7%99%D7%9D%20%D7%90%20%20100-75.JPG', title: "נשים פסים א  100-75", folder: 'Collection 2' },
+  { src: 'images/%D7%A0%D7%A9%D7%99%D7%9D%20%D7%A4%D7%A1%D7%99%D7%9D%20%D7%91%20%20100-75.JPG', title: "נשים פסים ב  100-75", folder: 'Collection 1' },
+  { src: 'images/%D7%A1%D7%92%D7%95%D7%9C%20%20%20%20100-100.JPG', title: "סגול    100-100", folder: 'Collection 2' },
+  { src: 'images/%D7%A1%D7%95%D7%9B%D7%AA%20%D7%92%D7%A4%D7%A0%D7%99%D7%9D%20%2080-120.JPG', title: "סוכת גפנים  80-120", folder: 'Collection 1' },
+  { src: 'images/%D7%A1%D7%95%D7%A4%D7%A8%D7%AA%20%D7%9B%D7%91%D7%A9%D7%99%D7%9D%20%20%D7%90%D7%A7%D7%A8%D7%99%D7%9C%D7%99%D7%A7%20%D7%A2%D7%9C%20%D7%A7%D7%A0%D7%91%D7%A1%20%20100-75%20%D7%A1%D7%9E.JPG', title: "סופרת כבשים  אקריליק על קנבס  100-75 סמ", folder: 'Collection 2' },
+  { src: 'images/%D7%A1%D7%99%D7%A8%D7%95%D7%AA%20%2080-80.JPG', title: "סירות  80-80", folder: 'Collection 1' },
+  { src: 'images/%D7%A1%D7%A8%D7%98%20%D7%A6%D7%99%D7%9C%D7%95%D7%9D%20%20100-80.JPG', title: "סרט צילום  100-80", folder: 'Collection 2' },
+  { src: 'images/%D7%A2%D7%91%D7%95%D7%93%D7%94%20%D7%A2%D7%91%D7%A8%D7%99%D7%AA%2080-180.jpg', title: "עבודה עברית 80-180", folder: 'Sculptures' },
+  { src: 'images/%D7%A2%D7%91%D7%A8%20%2050-40.jpg', title: "עבר  50-40", folder: 'Collection 1' },
+  { src: 'images/%D7%A2%D7%9B%D7%95%20%20%D7%90%D7%A7%D7%A8%D7%99%D7%9C%D7%99%D7%A7%20%D7%A2%D7%9C%20%D7%A7%D7%A0%D7%91%D7%A1%20%2060-120%20%D7%A1%D7%9E.JPG', title: "עכו  אקריליק על קנבס  60-120 סמ", folder: 'Collection 2' },
+  { src: 'images/%D7%A2%D7%A8%D7%91%20%20%D7%91%D7%92%D7%9C%D7%99%D7%9C%20%D7%90%D7%A7%D7%A8%D7%99%D7%9C%D7%99%D7%A7%20%D7%A2%D7%9C%20%D7%A7%D7%A0%D7%91%D7%A1%20%2060-120%20%D7%A1%D7%9E.JPG', title: "ערב  בגליל אקריליק על קנבס  60-120 סמ", folder: 'Collection 1' },
+  { src: 'images/%D7%A4%D7%95%D7%A8%D7%98%D7%A8%D7%98%20%20%D7%A8%D7%A9%D7%AA%20%20%D7%92%D7%99%D7%A7%D7%9C%D7%94%20%20100-70.jpg', title: "פורטרט  רשת  גיקלה  100-70", folder: 'Sculptures' },
+  { src: 'images/%D7%A4%D7%99%D7%9C-%20%D7%91%D7%95%D7%A7%D7%A1%20%20%20%D7%90%D7%A7%D7%A8%D7%99%D7%9C%D7%99%D7%A7%20%20%D7%A2%D7%9C%20%20%D7%A7%D7%A0%D7%91%D7%A1%2050-60%20%20%D7%A1%D7%A1.jpg', title: "פיל- בוקס   אקריליק  על  קנבס 50-60  סס", folder: 'Collection 1' },
+  { src: 'images/%D7%A4%D7%9C%D7%95%D7%A8%D7%A0%D7%98%D7%99%D7%9F%20%2060-120.JPG', title: "פלורנטין  60-120", folder: 'Collection 2' },
+  { src: 'images/%D7%A4%D7%A8%D7%A9%D7%AA%20%D7%93%D7%A8%D7%9B%D7%99%D7%9D%20150-100.JPG', title: "פרשת דרכים 150-100", folder: 'Collection 1' },
+  { src: 'images/%D7%A7%D7%95%D7%9C%D7%90%D7%96%20%D7%A8%D7%99%D7%A9%D7%95%D7%9E%D7%99%20%20120-80.JPG', title: "קולאז רישומי  120-80", folder: 'Collection 2' },
+  { src: 'images/%D7%A7%D7%95%D7%9C%D7%90%D7%96%20%D7%A8%D7%99%D7%A9%D7%95%D7%9E%D7%99%20110-90.jpg', title: "קולאז רישומי 110-90", folder: 'Collection 1' },
+  { src: 'images/%D7%A7%D7%95%D7%9C%D7%90%D7%96%20%D7%AA%D7%9C%20%D7%90%D7%91%D7%99%D7%91%20%D7%91%D7%A9%D7%97%D7%95%D7%A8%20%D7%9C%D7%91%D7%9F%20%20%D7%90%D7%A7%D7%A8%D7%99%D7%9C%D7%99%D7%A7%20%20%20100-70%20%D7%A1%D7%9E.JPG', title: "קולאז תל אביב בשחור לבן  אקריליק   100-70 סמ", folder: 'Collection 2' },
+  { src: 'images/%D7%A7%D7%AA%D7%99%20120-100.JPG', title: "קתי 120-100", folder: 'Collection 1' },
+  { src: 'images/%D7%A8%D7%92%D7%A2%20%D7%90%D7%99%D7%A0%D7%98%D7%99%D7%9E%D7%99%20%20100-50.JPG', title: "רגע אינטימי  100-50", folder: 'Collection 2' },
+  { src: 'images/%D7%A9%D7%93%D7%95%D7%AA%20%D7%94%D7%A2%D7%9E%D7%A7%20%20%D7%90%D7%A7%D7%A8%D7%99%D7%9C%D7%99%D7%A7%20%D7%A2%D7%9C%20%D7%A7%D7%A0%D7%91%D7%A1%20%20110-160%20%20%D7%A1%D7%9E.JPG', title: "שדות העמק  אקריליק על קנבס  110-160  סמ", folder: 'Collection 1' },
+  { src: 'images/%D7%A9%D7%95%D7%9C%D7%97%D7%9F%20%D7%9C%D7%A9%D7%A0%D7%99%D7%99%D7%9D%20%20%D7%90%D7%A7%D7%A8%D7%99%D7%9C%D7%99%D7%A7%20%D7%A2%D7%9C%20%D7%A7%D7%A0%D7%91%D7%A1%20%2060-80%20%20%D7%A1%D7%9E.jpg', title: "שולחן לשניים  אקריליק על קנבס  60-80  סמ", folder: 'Collection 2' },
+  { src: 'images/%D7%A9%D7%97%D7%95%D7%A8%20%20120-120.JPG', title: "שחור  120-120", folder: 'Collection 1' },
+  { src: 'images/%D7%A9%D7%97%D7%95%D7%A8%20%D7%95%D7%A6%D7%94%D7%95%D7%91%20%20120-90.JPG', title: "שחור וצהוב  120-90", folder: 'Collection 2' },
+  { src: 'images/%D7%A9%D7%99%D7%97%20%D7%A0%D7%A9%D7%99%D7%9D%20%20100-90.jpg', title: "שיח נשים  100-90", folder: 'Collection 1' },
+  { src: 'images/%D7%A9%D7%9C%D7%95%D7%A9%D7%94%20%D7%9E%D7%A6%D7%91%D7%99%D7%9D%20%20%D7%98%D7%A8%D7%99%D7%A4%D7%98%D7%99%D7%9B%D7%95%D7%9F%20%2060-90.jpg', title: "שלושה מצבים  טריפטיכון  60-90", folder: 'Collection 2' },
+  { src: 'images/%D7%AA%D7%90%D7%99%D7%9D%20%20100-80.JPG', title: "תאים  100-80", folder: 'Collection 1' },
+  { src: 'images/%D7%AA%D7%9E%D7%95%D7%A0%D7%94%5B1%5D%20%2810%29.JPG', title: "תמונה[1] (10)", folder: 'Collection 2' },
+  { src: 'images/%D7%AA%D7%9E%D7%95%D7%A0%D7%94%5B1%5D%20%2811%29.JPG', title: "תמונה[1] (11)", folder: 'Collection 1' },
+  { src: 'images/%D7%AA%D7%9E%D7%95%D7%A0%D7%94%5B1%5D%20%2812%29.JPG', title: "תמונה[1] (12)", folder: 'Collection 2' },
+  { src: 'images/%D7%AA%D7%9E%D7%95%D7%A0%D7%94%5B1%5D%20%2813%29.JPG', title: "תמונה[1] (13)", folder: 'Collection 1' },
+  { src: 'images/%D7%AA%D7%9E%D7%95%D7%A0%D7%94%5B1%5D%20%2814%29.JPG', title: "תמונה[1] (14)", folder: 'Collection 2' },
+  { src: 'images/%D7%AA%D7%9E%D7%95%D7%A0%D7%94%5B1%5D%20%282%29.JPG', title: "תמונה[1] (2)", folder: 'Sketches' },
+  { src: 'images/%D7%AA%D7%9E%D7%95%D7%A0%D7%94%5B1%5D%20%283%29.JPG', title: "תמונה[1] (3)", folder: 'Sketches' },
+  { src: 'images/%D7%AA%D7%9E%D7%95%D7%A0%D7%94%5B1%5D%20%284%29.JPG', title: "תמונה[1] (4)", folder: 'Sketches' },
+  { src: 'images/%D7%AA%D7%9E%D7%95%D7%A0%D7%94%5B1%5D%20%285%29.JPG', title: "תמונה[1] (5)", folder: 'Sketches' },
+  { src: 'images/%D7%AA%D7%9E%D7%95%D7%A0%D7%94%5B1%5D%20%286%29.JPG', title: "תמונה[1] (6)", folder: 'Collection 1' },
+  { src: 'images/%D7%AA%D7%9E%D7%95%D7%A0%D7%94%5B1%5D%20%287%29.JPG', title: "תמונה[1] (7)", folder: 'Collection 2' },
+  { src: 'images/%D7%AA%D7%9E%D7%95%D7%A0%D7%94%5B1%5D%20%288%29.JPG', title: "תמונה[1] (8)", folder: 'Collection 1' },
+  { src: 'images/%D7%AA%D7%9E%D7%95%D7%A0%D7%94%5B1%5D%20%289%29.JPG', title: "תמונה[1] (9)", folder: 'Collection 2' },
+  { src: 'images/%D7%AA%D7%9E%D7%95%D7%A0%D7%94%5B1%5D.JPG', title: "תמונה[1]", folder: 'Collection 1' },
+  { src: 'images/%D7%AA%D7%9E%D7%95%D7%A0%D7%94%5B2%5D%20%282%29.JPG', title: "תמונה[2] (2)", folder: 'Sketches' },
+  { src: 'images/%D7%AA%D7%9E%D7%95%D7%A0%D7%94%5B2%5D%20%283%29.JPG', title: "תמונה[2] (3)", folder: 'Sketches' },
+  { src: 'images/%D7%AA%D7%9E%D7%95%D7%A0%D7%94%5B2%5D%20%284%29.JPG', title: "תמונה[2] (4)", folder: 'Collection 2' },
+  { src: 'images/%D7%AA%D7%9E%D7%95%D7%A0%D7%94%5B2%5D%20%285%29.JPG', title: "תמונה[2] (5)", folder: 'Collection 1' },
+  { src: 'images/%D7%AA%D7%9E%D7%95%D7%A0%D7%94%5B2%5D%20%286%29.JPG', title: "תמונה[2] (6)", folder: 'Collection 2' },
+  { src: 'images/%D7%AA%D7%9E%D7%95%D7%A0%D7%94%5B2%5D.JPG', title: "תמונה[2]", folder: 'Sketches' },
+  { src: 'images/%D7%AA%D7%9E%D7%95%D7%A0%D7%94%5B3%5D.JPG', title: "תמונה[3]", folder: 'Sketches' },
+  { src: 'images/%D7%AA%D7%9E%D7%95%D7%A0%D7%95%D7%AA%20%D7%A9%D7%91%D7%90%D7%9C%D7%91%D7%95%D7%9D%20100-75.JPG', title: "תמונות שבאלבום 100-75", folder: 'Collection 1' },
+];
+
+const folders = [
+  { label: 'Collection 1', paintings: allPaintings.filter(p => p.folder === 'Collection 1') },
+  { label: 'Collection 2', paintings: allPaintings.filter(p => p.folder === 'Collection 2') },
+  { label: 'Sculptures',   paintings: allPaintings.filter(p => p.folder === 'Sculptures') },
+  { label: 'Sketches',     paintings: allPaintings.filter(p => p.folder === 'Sketches') },
+];
+
+function mod(n, m) { return ((n % m) + m) % m; }
+function getVisible() {
+  if (window.innerWidth <= 600) return 1;
+  if (window.innerWidth <= 900) return 2;
+  return 4;
+}
+
+let carouselStart = 0;
+
+function buildCarousel() {
+  const visible = getVisible();
+  const track   = document.getElementById('carousel-track');
+  track.innerHTML = '';
+  for (let i = 0; i < visible; i++) {
+    const idx  = mod(carouselStart + i, allPaintings.length);
+    const p    = allPaintings[idx];
+    const card = document.createElement('div');
+    card.className = 'gallery-card';
+    card.innerHTML = `
+      <div class="img-frame"><img src="${p.src}" alt="${p.title}"></div>
+      <div class="painting-name">${p.title}</div>
+    `;
+    card.onclick = () => openLightbox(null, idx, allPaintings);
+    track.appendChild(card);
+  }
+}
+
+function carouselShift(delta) {
+  document.querySelectorAll('.gallery-card').forEach(c => c.classList.add('fading'));
+  setTimeout(() => {
+    carouselStart = mod(carouselStart + delta, allPaintings.length);
+    buildCarousel();
+  }, 300);
+}
+
+document.getElementById('c-prev').onclick = () => carouselShift(-1);
+document.getElementById('c-next').onclick = () => carouselShift(1);
+window.addEventListener('resize', buildCarousel);
+
+/* Swipe support for carousel */
+let touchStartX = 0;
+document.getElementById('carousel-track').addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, { passive: true });
+document.getElementById('carousel-track').addEventListener('touchend', e => {
+  const dx = e.changedTouches[0].clientX - touchStartX;
+  if (Math.abs(dx) > 50) carouselShift(dx < 0 ? 1 : -1);
+}, { passive: true });
+
+/* Folders */
+const foldersEl = document.getElementById('folders-section');
+folders.forEach(folder => {
+  const cover = folder.paintings[0]?.src || null;
+  const card  = document.createElement('div');
+  card.className = 'folder-card';
+  card.innerHTML = `
+    <div class="f-label">${folder.label}</div>
+    <div class="f-img-wrap">
+      ${cover
+        ? `<img src="${cover}" alt="${folder.label}">`
+        : `<div class="f-placeholder">🎨</div>`}
+    </div>
+    <div class="f-count">${folder.paintings.length} work${folder.paintings.length !== 1 ? 's' : ''}</div>
+  `;
+  if (folder.paintings.length) card.onclick = () => openLightbox(folder.label, 0, folder.paintings);
+  foldersEl.appendChild(card);
+});
+
+/* Lightbox */
+let lbPaintings = [], lbIdx = 0;
+
+function openLightbox(folderName, idx, paintings) {
+  lbPaintings = paintings; lbIdx = idx;
+  document.getElementById('lb-folder-name').textContent = folderName || '';
+  document.getElementById('lightbox').classList.add('open');
+  renderLb(false);
+}
+function closeLightbox() { document.getElementById('lightbox').classList.remove('open'); }
+function renderLb(animate) {
+  const p   = lbPaintings[lbIdx];
+  const img = document.getElementById('lb-img');
+  if (animate) {
+    img.classList.add('fading');
+    setTimeout(() => { img.src = p.src; img.classList.remove('fading'); }, 280);
+  } else { img.src = p.src; }
+  document.getElementById('lb-title').textContent = p.title;
+  document.getElementById('lb-meta').textContent  = p.meta;
+  const dotsEl = document.getElementById('lb-dots');
+  dotsEl.innerHTML = '';
+  if (lbPaintings.length > 1) {
+    lbPaintings.forEach((_, i) => {
+      const d = document.createElement('div');
+      d.className = 'lb-dot' + (i === lbIdx ? ' active' : '');
+      d.onclick = () => { lbIdx = i; renderLb(true); };
+      dotsEl.appendChild(d);
+    });
+  }
+}
+function lbPrev() { lbIdx = mod(lbIdx - 1, lbPaintings.length); renderLb(true); }
+function lbNext() { lbIdx = mod(lbIdx + 1, lbPaintings.length); renderLb(true); }
+
+document.getElementById('lb-prev').onclick  = lbPrev;
+document.getElementById('lb-next').onclick  = lbNext;
+document.getElementById('lb-close').onclick = closeLightbox;
+document.getElementById('lightbox').onclick = e => { if (e.target === document.getElementById('lightbox')) closeLightbox(); };
+
+/* Swipe in lightbox */
+let lbTouchX = 0;
+document.getElementById('lb-img-wrap').addEventListener('touchstart', e => { lbTouchX = e.touches[0].clientX; }, { passive: true });
+document.getElementById('lb-img-wrap').addEventListener('touchend', e => {
+  const dx = e.changedTouches[0].clientX - lbTouchX;
+  if (Math.abs(dx) > 40) { dx < 0 ? lbNext() : lbPrev(); }
+}, { passive: true });
+
+document.addEventListener('keydown', e => {
+  if (!document.getElementById('lightbox').classList.contains('open')) return;
+  if (e.key === 'Escape')     closeLightbox();
+  if (e.key === 'ArrowLeft')  lbPrev();
+  if (e.key === 'ArrowRight') lbNext();
+});
+
+buildCarousel();
+</script>
+</body>
+</html>
