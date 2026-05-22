@@ -332,8 +332,8 @@
     nav { top: 12px; right: 20px; }
     nav a { font-size: 14px; letter-spacing: 1px; padding: 5px 14px; }
 
-    .hero { padding: 18px 16px 14px; }
-    .hero h1 { font-size: 26px; letter-spacing: 3px; white-space: normal; }
+    .hero { padding: 60px 16px 14px; }
+    .hero h1 { font-size: 36px; letter-spacing: 2px; white-space: normal; }
 
     .slideshow-section { flex-direction: column; padding: 16px 12px 20px; gap: 20px; min-height: unset; }
     .slideshow-container { max-width: 100%; width: 100%; }
@@ -354,7 +354,28 @@
     .lb-side { height: auto; width: 88vw; max-width: unset; }
     .lb-dims { flex-direction: row; gap: 20px; min-width: unset; height: auto; margin: 0; }
     .lb-medium-val { font-size: 14px; align-self: center; text-align: center; }
-    .lb-title { font-size: 13px; }
+    .lb-title { font-size: 11px; }
+
+    /* about modal mobile */
+    .about-box { max-width: 100%; padding: 48px 20px 48px; }
+    .about-layout { flex-direction: column; gap: 32px; }
+    .about-body { min-width: unset; }
+    .about-book-wrap { width: 100%; max-width: 260px; margin: 0 auto; padding-top: 0; }
+    .about-book-wrap img { max-width: 260px; }
+    .about-name { font-size: 22px; }
+    .about-body p, .about-body ul li { font-size: 15px; }
+    .about-body blockquote { font-size: 14px; }
+
+    /* all-works grid mobile */
+    .all-works-section { padding: 24px 12px 40px; }
+  }
+
+  /* ── LANDSCAPE MOBILE ── */
+  @media (max-width: 900px) and (orientation: landscape) {
+    .hero h1 { font-size: 32px; }
+    .hero { padding: 48px 16px 12px; }
+    .about-layout { flex-direction: column; gap: 32px; }
+    .about-book-wrap { width: 100%; max-width: 220px; margin: 0 auto; padding-top: 0; }
   }
 
   /* ── TABLET ── */
@@ -505,22 +526,22 @@ const allPaintings = [
   { src: 'images/lando_00009.jpg', title: "תמונה בלי שם 23", folder: 'Collection 2' },
   { src: 'images/Library%20-%20249.jpg', title: "תמונה בלי שם 24", folder: 'Collection 1' },
   { src: 'images/Library%20-%20255.jpg', title: "תמונה בלי שם 25", folder: 'Collection 2' },
-  { src: 'images/Library%20-%20313.jpg', title: "תמונה בלי שם 26", folder: 'Collection 1' },
-  { src: 'images/Library%20-%20314.jpg', title: "תמונה בלי שם 27", folder: 'Collection 2' },
-  { src: 'images/Untitled00029.jpg', title: "תמונה בלי שם 28", folder: 'Collection 1' },
-  { src: 'images/Untitled00030.jpg', title: "רישום 21", folder: 'Sketches', medium: 'רישום' },
-  { src: 'images/Untitled00033.jpg', title: "תמונה בלי שם 29", folder: 'Collection 1' },
-  { src: 'images/Untitled00257.jpg', title: "רישום 01", folder: 'Sketches', medium: 'רישום' },
-  { src: 'images/Untitled00259.jpg', title: "רישום 02", folder: 'Sketches', medium: 'רישום' },
-  { src: 'images/Untitled00260.jpg', title: "רישום 03", folder: 'Sketches', medium: 'רישום' },
-  { src: 'images/Untitled00261.jpg', title: "רישום 04", folder: 'Sketches', medium: 'רישום' },
-  { src: 'images/Untitled00262.jpg', title: "רישום 05", folder: 'Sketches', medium: 'רישום' },
-  { src: 'images/Untitled00264.jpg', title: "רישום 06", folder: 'Sketches', medium: 'רישום' },
-  { src: 'images/Untitled00265.jpg', title: "רישום 07", folder: 'Sketches', medium: 'רישום' },
-  { src: 'images/Untitled00266.jpg', title: "רישום 08", folder: 'Sketches', medium: 'רישום' },
-  { src: 'images/Untitled00267.jpg', title: "רישום 09", folder: 'Sketches', medium: 'רישום' },
-  { src: 'images/Untitled00268.jpg', title: "רישום 10", folder: 'Sketches', medium: 'רישום' },
-  { src: 'images/Untitled00269.jpg', title: "רישום 11", folder: 'Sketches', medium: 'רישום' },
+  { src: 'images/Library%20-%20313.jpg', title: "ספריה 2", folder: 'Collection 1', length: '50 ס"מ', width: '80 ס"מ' },
+  { src: 'images/Library%20-%20314.jpg', title: "ספריה 1", folder: 'Collection 2', length: '50 ס"מ', width: '40 ס"מ' },
+  { src: 'images/Untitled00029.jpg', title: "תמונה בלי שם 28", folder: 'Collection 1', length: '70 ס"מ', width: '50 ס"מ' },
+  { src: 'images/Untitled00030.jpg', title: "רישום 21", folder: 'Sketches', medium: 'רישום', length: '55 ס"מ', width: '50 ס"מ' },
+  { src: 'images/Untitled00033.jpg', title: "תמונה בלי שם 29", folder: 'Collection 1', length: '35 ס"מ', width: '40 ס"מ' },
+  { src: 'images/Untitled00257.jpg', title: "רישום 01", folder: 'Sketches', medium: 'רישום', length: '75 ס"מ', width: '60 ס"מ' },
+  { src: 'images/Untitled00259.jpg', title: "רישום 02", folder: 'Sketches', medium: 'רישום', length: '40 ס"מ', width: '30 ס"מ' },
+  { src: 'images/Untitled00260.jpg', title: "רישום 03", folder: 'Sketches', medium: 'רישום', length: '50 ס"מ', width: '35 ס"מ' },
+  { src: 'images/Untitled00261.jpg', title: "רישום 04", folder: 'Sketches', medium: 'רישום', length: '50 ס"מ', width: '40 ס"מ' },
+  { src: 'images/Untitled00262.jpg', title: "רישום 05", folder: 'Sketches', medium: 'רישום', length: '55 ס"מ', width: '45 ס"מ' },
+  { src: 'images/Untitled00264.jpg', title: "רישום 06", folder: 'Sketches', medium: 'רישום', length: '30 ס"מ', width: '25 ס"מ' },
+  { src: 'images/Untitled00265.jpg', title: "רישום 07", folder: 'Sketches', medium: 'רישום', length: '30 ס"מ', width: '25 ס"מ' },
+  { src: 'images/Untitled00266.jpg', title: "רישום 08", folder: 'Sketches', medium: 'רישום', length: '23 ס"מ', width: '28 ס"מ' },
+  { src: 'images/Untitled00267.jpg', title: "רישום 09", folder: 'Sketches', medium: 'רישום', length: '30 ס"מ', width: '25 ס"מ' },
+  { src: 'images/Untitled00268.jpg', title: "רישום 10", folder: 'Sketches', medium: 'רישום', length: '30 ס"מ', width: '25 ס"מ' },
+  { src: 'images/Untitled00269.jpg', title: "רישום 11", folder: 'Sketches', medium: 'רישום', length: '25 ס"מ', width: '30 ס"מ' },
   { src: 'images/%D7%90%D7%93%D7%95%D7%9E%D7%95%D7%AA%20%20100-70.JPG', title: "אדומות", folder: 'Collection 1', length: '100 ס"מ', width: '70 ס"מ' },
   { src: 'images/%D7%90%D7%95%D7%93%D7%99%2020-13.JPG', title: "רישום - אודי", folder: 'Sketches', medium: 'רישום', length: '20 ס"מ', width: '13 ס"מ' },
   { src: 'images/%D7%90%D7%95%D7%A8%D7%99%D7%99%D7%A0%D7%98%20%D7%90%D7%A7%D7%A8%D7%99%D7%9C%D7%99%D7%A7%20%D7%A2%D7%9C%20%D7%A7%D7%A0%D7%91%D7%A1%2060-45%20%D7%A1%D7%9E.JPG', title: "אוריינט", folder: 'Collection 1', medium: 'אקריליק על קנבס', length: '60 ס"מ', width: '45 ס"מ' },
@@ -578,8 +599,8 @@ const allPaintings = [
   { src: 'images/%D7%9B%D7%9C%20%D7%90%D7%97%D7%AA%20%D7%91%D7%A9%D7%9C%D7%94%201%20%20%20100-100.jpg', title: "כל אחת בשלה 1", folder: 'Collection 2', length: '100 ס"מ', width: '100 ס"מ' },
   { src: 'images/%D7%9B%D7%A1%D7%90%20%20120-100.jpg', title: "כסא", folder: 'Collection 1', length: '120 ס"מ', width: '100 ס"מ' },
   { src: 'images/%D7%9B%D7%AA%D7%95%D7%9D%20%20%D7%A8%D7%99%D7%A9%D7%95%D7%9D%20%D7%A4%D7%97%D7%9D%20%20%2070-50%20%D7%A1%D7%9E.JPG', title: "כתום", folder: 'Collection 2', medium: 'רישום פחם', length: '70 ס"מ', width: '50 ס"מ' },
-  { src: 'images/%D7%9C%D7%95%D7%A1%D7%99%202.jpg', title: "לוסי 2", folder: 'Collection 1' },
-  { src: 'images/%D7%9C%D7%95%D7%A1%D7%99.jpg', title: "לוסי", folder: 'Collection 2' },
+  { src: 'images/%D7%9C%D7%95%D7%A1%D7%99%202.jpg', title: "לוסי 2", folder: 'Collection 1', length: '80 ס"מ', width: '60 ס"מ' },
+  { src: 'images/%D7%9C%D7%95%D7%A1%D7%99.jpg', title: "לוסי", folder: 'Collection 2', length: '90 ס"מ', width: '70 ס"מ' },
   { src: 'images/%D7%9C%D7%9C%D7%90%20%D7%9B%D7%95%D7%AA%D7%A8%D7%AA%20%20120-120.jpg', title: "ללא כותרת", folder: 'Collection 1', length: '120 ס"מ', width: '120 ס"מ' },
   { src: 'images/%D7%9C%D7%9C%D7%90%20%D7%9B%D7%95%D7%AA%D7%A8%D7%AA%2090-150.JPG', title: "ללא כותרת", folder: 'Collection 2', length: '90 ס"מ', width: '150 ס"מ' },
   { src: 'images/%D7%9E%D7%91%D7%98%20%D7%98%D7%9C%D7%A1%D7%A7%D7%95%D7%A4%D7%99%20%2070-70.jpg', title: "מבט טלסקופי", folder: 'Collection 1', length: '70 ס"מ', width: '70 ס"מ' },
@@ -636,28 +657,33 @@ const allPaintings = [
   { src: 'images/%D7%A9%D7%99%D7%97%20%D7%A0%D7%A9%D7%99%D7%9D%20%20100-90.jpg', title: "שיח נשים", folder: 'Collection 1', length: '100 ס"מ', width: '90 ס"מ' },
   { src: 'images/%D7%A9%D7%9C%D7%95%D7%A9%D7%94%20%D7%9E%D7%A6%D7%91%D7%99%D7%9D%20%20%D7%98%D7%A8%D7%99%D7%A4%D7%98%D7%99%D7%9B%D7%95%D7%9F%20%2060-90.jpg', title: "שלושה מצבים", folder: 'Collection 2', medium: 'טריפטיכון', length: '60 ס"מ', width: '90 ס"מ' },
   { src: 'images/%D7%AA%D7%90%D7%99%D7%9D%20%20100-80.JPG', title: "תאים", folder: 'Collection 1', length: '100 ס"מ', width: '80 ס"מ' },
-  { src: 'images/%D7%AA%D7%9E%D7%95%D7%A0%D7%94%5B1%5D%20%2810%29.JPG', title: "תמונה בלי שם 1", folder: 'Collection 2' },
-  { src: 'images/%D7%AA%D7%9E%D7%95%D7%A0%D7%94%5B1%5D%20%2811%29.JPG', title: "תמונה בלי שם 2", folder: 'Collection 1' },
+  { src: 'images/%D7%AA%D7%9E%D7%95%D7%A0%D7%94%5B1%5D%20%2810%29.JPG', title: "תמונה בלי שם 1", folder: 'Collection 2', length: '100 ס"מ', width: '70 ס"מ' },
+  { src: 'images/%D7%AA%D7%9E%D7%95%D7%A0%D7%94%5B1%5D%20%2811%29.JPG', title: "תמונה בלי שם 2", folder: 'Collection 1', length: '40 ס"מ', width: '45 ס"מ' },
   { src: 'images/%D7%AA%D7%9E%D7%95%D7%A0%D7%94%5B1%5D%20%2812%29.JPG', title: "רישום 20", folder: 'Sketches', medium: 'רישום' },
-  { src: 'images/%D7%AA%D7%9E%D7%95%D7%A0%D7%94%5B1%5D%20%2813%29.JPG', title: "תמונה בלי שם 3", folder: 'Collection 1' },
-  { src: 'images/%D7%AA%D7%9E%D7%95%D7%A0%D7%94%5B1%5D%20%2814%29.JPG', title: "תמונה בלי שם 4", folder: 'Collection 2' },
-  { src: 'images/%D7%AA%D7%9E%D7%95%D7%A0%D7%94%5B1%5D%20%282%29.JPG', title: "רישום 12", folder: 'Sketches', medium: 'רישום' },
-  { src: 'images/%D7%AA%D7%9E%D7%95%D7%A0%D7%94%5B1%5D%20%283%29.JPG', title: "רישום 13", folder: 'Sketches', medium: 'רישום' },
-  { src: 'images/%D7%AA%D7%9E%D7%95%D7%A0%D7%94%5B1%5D%20%284%29.JPG', title: "רישום 14", folder: 'Sketches', medium: 'רישום' },
-  { src: 'images/%D7%AA%D7%9E%D7%95%D7%A0%D7%94%5B1%5D%20%285%29.JPG', title: "רישום 15", folder: 'Sketches', medium: 'רישום' },
+  { src: 'images/%D7%AA%D7%9E%D7%95%D7%A0%D7%94%5B1%5D%20%2813%29.JPG', title: "תמונה בלי שם 3", folder: 'Collection 1', length: '40 ס"מ', width: '50 ס"מ' },
+  { src: 'images/%D7%AA%D7%9E%D7%95%D7%A0%D7%94%5B1%5D%20%2814%29.JPG', title: "תמונה בלי שם 4", folder: 'Collection 2', length: '50 ס"מ', width: '40 ס"מ' },
+  { src: 'images/%D7%AA%D7%9E%D7%95%D7%A0%D7%94%5B1%5D%20%282%29.JPG', title: "רישום 12", folder: 'Sketches', medium: 'רישום על נייר A4', length: '21 ס"מ', width: '30 ס"מ' },
+  { src: 'images/%D7%AA%D7%9E%D7%95%D7%A0%D7%94%5B1%5D%20%283%29.JPG', title: "רישום 13", folder: 'Sketches', medium: 'רישום על נייר A4', length: '21 ס"מ', width: '30 ס"מ' },
+  { src: 'images/%D7%AA%D7%9E%D7%95%D7%A0%D7%94%5B1%5D%20%284%29.JPG', title: "רישום 14", folder: 'Sketches', medium: 'רישום על נייר A4', length: '21 ס"מ', width: '30 ס"מ' },
+  { src: 'images/%D7%AA%D7%9E%D7%95%D7%A0%D7%94%5B1%5D%20%285%29.JPG', title: "רישום 15", folder: 'Sketches', medium: 'רישום על נייר A4', length: '21 ס"מ', width: '30 ס"מ' },
   { src: 'images/%D7%AA%D7%9E%D7%95%D7%A0%D7%94%5B1%5D%20%286%29.JPG', title: "תמונה בלי שם 5", folder: 'Collection 1' },
-  { src: 'images/%D7%AA%D7%9E%D7%95%D7%A0%D7%94%5B1%5D%20%287%29.JPG', title: "תמונה בלי שם 6", folder: 'Collection 2' },
-  { src: 'images/%D7%AA%D7%9E%D7%95%D7%A0%D7%94%5B1%5D%20%288%29.JPG', title: "תמונה בלי שם 7", folder: 'Collection 1' },
-  { src: 'images/%D7%AA%D7%9E%D7%95%D7%A0%D7%94%5B1%5D%20%289%29.JPG', title: "תמונה בלי שם 8", folder: 'Collection 2' },
+  { src: 'images/%D7%AA%D7%9E%D7%95%D7%A0%D7%94%5B1%5D%20%287%29.JPG', title: "תמונה בלי שם 6", folder: 'Collection 2', length: '30 ס"מ', width: '20 ס"מ' },
+  { src: 'images/%D7%AA%D7%9E%D7%95%D7%A0%D7%94%5B1%5D%20%288%29.JPG', title: "תמונה בלי שם 7", folder: 'Collection 1', length: '30 ס"מ', width: '25 ס"מ' },
+  { src: 'images/%D7%AA%D7%9E%D7%95%D7%A0%D7%94%5B1%5D%20%289%29.JPG', title: "תמונה בלי שם 8", folder: 'Collection 2', length: '40 ס"מ', width: '40 ס"מ' },
   { src: 'images/%D7%AA%D7%9E%D7%95%D7%A0%D7%94%5B1%5D.JPG', title: "רישום - בן", folder: 'Sketches', medium: 'רישום' },
-  { src: 'images/%D7%AA%D7%9E%D7%95%D7%A0%D7%94%5B2%5D%20%282%29.JPG', title: "רישום 16", folder: 'Sketches', medium: 'רישום' },
-  { src: 'images/%D7%AA%D7%9E%D7%95%D7%A0%D7%94%5B2%5D%20%283%29.JPG', title: "רישום 17", folder: 'Sketches', medium: 'רישום' },
-  { src: 'images/%D7%AA%D7%9E%D7%95%D7%A0%D7%94%5B2%5D%20%284%29.JPG', title: "תמונה בלי שם 9", folder: 'Collection 2' },
-  { src: 'images/%D7%AA%D7%9E%D7%95%D7%A0%D7%94%5B2%5D%20%285%29.JPG', title: "תמונה בלי שם 10", folder: 'Collection 1' },
-  { src: 'images/%D7%AA%D7%9E%D7%95%D7%A0%D7%94%5B2%5D%20%286%29.JPG', title: "רישום 18", folder: 'Sketches', medium: 'רישום' },
-  { src: 'images/%D7%AA%D7%9E%D7%95%D7%A0%D7%94%5B2%5D.JPG', title: "רישום 19", folder: 'Sketches', medium: 'רישום' },
-  { src: 'images/%D7%AA%D7%9E%D7%95%D7%A0%D7%94%5B3%5D.JPG', title: "רישום 20", folder: 'Sketches', medium: 'רישום' },
+  { src: 'images/%D7%AA%D7%9E%D7%95%D7%A0%D7%94%5B2%5D%20%282%29.JPG', title: "רישום 16", folder: 'Sketches', medium: 'רישום על נייר A4', length: '21 ס"מ', width: '30 ס"מ' },
+  { src: 'images/%D7%AA%D7%9E%D7%95%D7%A0%D7%94%5B2%5D%20%283%29.JPG', title: "רישום 17", folder: 'Sketches', medium: 'רישום על נייר A4', length: '21 ס"מ', width: '30 ס"מ' },
+  { src: 'images/%D7%AA%D7%9E%D7%95%D7%A0%D7%94%5B2%5D%20%284%29.JPG', title: "תמונה בלי שם 9", folder: 'Collection 2', length: '30 ס"מ', width: '25 ס"מ' },
+  { src: 'images/%D7%AA%D7%9E%D7%95%D7%A0%D7%94%5B2%5D%20%285%29.JPG', title: "תמונה בלי שם 10", folder: 'Collection 1', length: '40 ס"מ', width: '30 ס"מ' },
+  { src: 'images/%D7%AA%D7%9E%D7%95%D7%A0%D7%94%5B2%5D%20%286%29.JPG', title: "רישום 18", folder: 'Sketches', medium: 'רישום', length: '23 ס"מ', width: '20 ס"מ' },
+  { src: 'images/%D7%AA%D7%9E%D7%95%D7%A0%D7%94%5B2%5D.JPG', title: "רישום 19", folder: 'Sketches', medium: 'רישום על נייר A4', length: '21 ס"מ', width: '30 ס"מ' },
+  { src: 'images/%D7%AA%D7%9E%D7%95%D7%A0%D7%94%5B3%5D.JPG', title: "בחירות", folder: 'Sketches', medium: 'רישום', length: '40 ס"מ', width: '25 ס"מ' },
   { src: 'images/%D7%AA%D7%9E%D7%95%D7%A0%D7%95%D7%AA%20%D7%A9%D7%91%D7%90%D7%9C%D7%91%D7%95%D7%9D%20100-75.JPG', title: "תמונות שבאלבום", folder: 'Collection 1', length: '100 ס"מ', width: '75 ס"מ' },
+  { src: 'images/1-2%20%D7%A8%D7%95%D7%A7%D7%93%D7%95%D7%AA.JPG', title: "1-2 רוקדות", folder: 'Sculptures', medium: 'רשת', length: '120 ס"מ', width: '60 ס"מ' },
+  { src: 'images/%D7%AA%D7%9E%D7%95%D7%A0%D7%AA%20%D7%A8%D7%A9%D7%AA%2001.jpeg', title: "תמונת רשת 01", folder: 'Sculptures', medium: 'רשת', length: '80 ס"מ', width: '100 ס"מ' },
+  { src: 'images/%D7%A0%D7%97%D7%99%D7%AA%D7%94%20%D7%9E%D7%95%D7%A9%D7%9C%D7%9E%D7%AA.jpeg', title: "נחיתה מושלמת", folder: 'Sketches', medium: 'רישום עם כתמי דיו', length: '25 ס"מ', width: '30 ס"מ' },
+  { src: 'images/%D7%AA%D7%9E%D7%95%D7%A0%D7%94%20%D7%91%D7%9C%D7%99%20%D7%A9%D7%9D%2026.jpeg', title: "תמונה בלי שם 26", folder: 'Collection 2', length: '24 ס"מ', width: '22 ס"מ' },
+  { src: 'images/%D7%AA%D7%9E%D7%95%D7%A0%D7%94%20%D7%91%D7%9C%D7%99%20%D7%A9%D7%9D%2027.jpeg', title: "תמונה בלי שם 27", folder: 'Collection 2', length: '33 ס"מ', width: '39 ס"מ' },
   { src: 'Digital%20images/%D7%A8%D7%99%D7%A9%D7%95%D7%9D%20%D7%93%D7%99%D7%92%D7%99%D7%98%D7%9C%D7%99%2001.jpeg', title: "רישום דיגיטלי 01", folder: 'Digital', medium: 'רישום דיגיטלי' },
   { src: 'Digital%20images/%D7%A8%D7%99%D7%A9%D7%95%D7%9D%20%D7%93%D7%99%D7%92%D7%99%D7%98%D7%9C%D7%99%2002.jpeg', title: "רישום דיגיטלי 02", folder: 'Digital', medium: 'רישום דיגיטלי' },
   { src: 'Digital%20images/%D7%A8%D7%99%D7%A9%D7%95%D7%9D%20%D7%93%D7%99%D7%92%D7%99%D7%98%D7%9C%D7%99%2003.jpeg', title: "רישום דיגיטלי 03", folder: 'Digital', medium: 'רישום דיגיטלי' },
