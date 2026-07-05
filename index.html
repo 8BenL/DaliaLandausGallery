@@ -589,12 +589,6 @@
     <button class="lb-arrow" id="lb-prev" type="button">&#8592;</button>
     <div>
       <div class="lb-img-row">
-        <div class="lb-img-col">
-          <div class="lb-info">
-            <div class="lb-title" id="lb-title"></div>
-          </div>
-          <div class="lb-img-wrap" id="lb-img-wrap"><img id="lb-img" src="" alt=""></div>
-        </div>
         <div class="lb-side">
           <div class="lb-medium-val" id="lb-medium"></div>
           <div class="lb-dims" id="lb-dims">
@@ -612,6 +606,12 @@
           <a class="lb-price-btn hidden" id="lb-price-btn" href="#" target="_blank">
             <span class="lb-price-amount" id="lb-price-amount"></span>
           </a>
+        </div>
+        <div class="lb-img-col">
+          <div class="lb-info">
+            <div class="lb-title" id="lb-title"></div>
+          </div>
+          <div class="lb-img-wrap" id="lb-img-wrap"><img id="lb-img" src="" alt=""></div>
         </div>
       </div>
       <div class="lb-dots" id="lb-dots"></div>
@@ -840,17 +840,14 @@ function makeSlideshow(imgEl, nameEl, frameEl, paintings) {
   function show(animate) {
     const p = paintings[idx];
     if (animate) {
-      let swapped = false;
-      const swap = () => {
-        if (swapped) return;
-        swapped = true;
-        imgEl.src = p.src;
-        nameEl.textContent = p.title;
-        imgEl.classList.remove('fading');
-      };
       imgEl.classList.add('fading');
-      imgEl.addEventListener('transitionend', swap, { once: true });
-      setTimeout(swap, 600);
+      setTimeout(() => {
+        nameEl.textContent = p.title;
+        imgEl.onload = () => { imgEl.onload = null; imgEl.classList.remove('fading'); };
+        imgEl.onerror = () => { imgEl.onerror = null; imgEl.classList.remove('fading'); };
+        imgEl.src = p.src;
+        if (imgEl.complete && imgEl.naturalHeight > 0) { imgEl.onload = null; imgEl.classList.remove('fading'); }
+      }, 500);
     } else { imgEl.src = p.src; nameEl.textContent = p.title; }
     preloadNext();
   }
