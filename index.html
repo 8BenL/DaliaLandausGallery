@@ -251,7 +251,7 @@
   #lb-next { right: 24px; }
   .lb-arrow:hover { border-color: #7a5c3a; color: #3d2b1a; }
   .lb-img-row {
-    display: flex; align-items: flex-end; justify-content: center; gap: 24px;
+    display: flex; align-items: flex-end; justify-content: center; gap: 24px; direction: ltr;
   }
   .lb-side {
     display: flex; flex-direction: column;
@@ -302,18 +302,18 @@
   .lb-measurements { display: flex; flex-direction: column; gap: 16px; }
   .lb-dim-field { display: flex; flex-direction: column; gap: 4px; }
   .lb-dim-label {
-    font-size: 15px; letter-spacing: 1px;
+    font-size: 12px; letter-spacing: 1px;
     text-transform: uppercase; color: #9a7a5a; direction: rtl;
   }
   .lb-dim-value {
-    font-size: 15px; color: #9a7a5a;
+    font-size: 12px; color: #9a7a5a;
     border-bottom: 1px solid #c4a882;
     padding-bottom: 4px; min-width: 80px;
     direction: rtl; unicode-bidi: isolate;
   }
   .lb-img-col { display: flex; flex-direction: column; align-items: center; }
   .lb-info { text-align: center; margin-bottom: 14px; }
-  .lb-title { font-size: 25px; color: #5a3e28; letter-spacing: 1px; font-style: italic; direction: rtl; }
+  .lb-title { font-size: 32px; color: #5a3e28; letter-spacing: 1px; font-style: italic; direction: rtl; }
   .lb-meta  { font-size: 9px; color: #9a7a5a; letter-spacing: 3px; text-transform: uppercase; margin-top: 5px; }
   .lb-dots  { display: flex; gap: 8px; margin-top: 10px; justify-content: center; }
   .lb-dot   { width: 8px; height: 8px; border-radius: 50%; background: #d4bc9e; cursor: pointer; transition: background 0.2s; }
@@ -405,7 +405,7 @@
     .lb-dims { flex-direction: row; gap: 20px; min-width: unset; height: auto; margin: 12px 0 0 0; }
     .lb-price-btn { margin-top: 16px; }
     .lb-medium-val { font-size: 14px; align-self: center; text-align: center; }
-    .lb-title { font-size: 11px; }
+    .lb-title { font-size: 20px; }
 
     /* about modal mobile */
     .about-box { max-width: 100%; padding: 48px 20px 48px; }
@@ -535,9 +535,9 @@
       <p>באחת התערוכות בהן השתתפתי, האוצרת ד"ר נאווה סביליה שדה היטיבה לתאר את עבודתי — ואביא חלק מדבריה כלשונם:</p>
       <blockquote>"משחק בין גבולות לפריצתם, מסגרות וסדקים, באה לידי ביטוי בחתימת ידה של לנדאו, אשר מותירה על פני הקנווס פסיפס של תחושות, דמויות וצבעים בטכניקות מגוונות: קולאז, רישום, עיבוי וחריטה. מתח מתמיד קיים ביצירתה של לנדאו בין מסגרת לחירות. מתח זה בא לידי ביטוי בתחילתה של עבודה, לעיתים ללא כל תכנית תוך הנחת צבע חופשית ואינטואיטיבית, ההופכת בסופו של תהליך ליצירה מודעת. ציוריה מתאפיינים בצבעוניות עזה ולעיתים לירית, נטייה ברורה לעבר המופשט, כאשר לפתע נסדק מערך זה על ידי רישום קלאסי מפתיע, עשוי היטב. ניגודים אלו הם המעניקים ליצירתה חותם אישי מיוחד במינו — דווקא המסגרות הסדוקות הן אלו הבוראות את התהליכים המעניינים והמפרים ביותר בחיינו."</blockquote>
       <p class="tight">זה שנים רבות שיצירותיה של דליה לנדאו מוצגות במגוון תערוכות וגלריות ברחבי הארץ.</p>
-      <p class="tight">בשנים...? עבודותיה היו מוצגות, כמו גם חלל יצירתה הפעיל - הסטודיו שלה, בגלריית "גלריה 5" שבכפר מלל (הוד השרון), יחד עם ארבעה אומנים נוספים.</p>
+      <p class="tight">עד שנת 2015 עבודותיה היו מוצגות, כמו גם חלל יצירתה הפעיל - הסטודיו שלה, בגלריית "גלריה 5" שבכפר מלל (הוד השרון), יחד עם ארבעה אומנים נוספים.</p>
       <p class="tight">בשנים אלו אף לימדה ציור בהתנדבות ב"בית היוצר" ברעננה.</p>
-      <p class="spacious">להלן רשימה מקוצרת של תערוכות זכורות במיוחד בהן הציגה.</p>
+      <p class="spacious">להלן רשימה מקוצרת של תערוכות בהן הציגה.</p>
       <h3>תערוכות נבחרות</h3>
       <ul>
         <li>גלריית האגם, רעננה — "שלוש ביחד ולחוד" | "עצמאות"</li>
@@ -550,7 +550,6 @@
         <li>מרכז ענב לתרבות, תל-אביב — "100 שנה לת"א — אומנים יוצרים"</li>
         <li>גלריית מצפה הימים — "על נופים ואנשים"</li>
       </ul>
-      <p class="spacious">בשנים האחרונות מתגוררת דליה לנדאו בכפר סבא הירוקה.</p>
     </div>
     <div class="about-book-wrap">
       <img src="Digital%20images/%D7%9B%D7%A8%D7%99%D7%9B%D7%AA%20%D7%94%D7%A1%D7%A4%D7%A8%20%D7%90%D7%A1%D7%AA%D7%A8.jpeg" alt="כריכת הספר אסתר">
@@ -841,8 +840,17 @@ function makeSlideshow(imgEl, nameEl, frameEl, paintings) {
   function show(animate) {
     const p = paintings[idx];
     if (animate) {
+      let swapped = false;
+      const swap = () => {
+        if (swapped) return;
+        swapped = true;
+        imgEl.src = p.src;
+        nameEl.textContent = p.title;
+        imgEl.classList.remove('fading');
+      };
       imgEl.classList.add('fading');
-      setTimeout(() => { imgEl.src = p.src; nameEl.textContent = p.title; imgEl.classList.remove('fading'); }, 500);
+      imgEl.addEventListener('transitionend', swap, { once: true });
+      setTimeout(swap, 600);
     } else { imgEl.src = p.src; nameEl.textContent = p.title; }
     preloadNext();
   }
@@ -879,7 +887,7 @@ folders.forEach(folder => {
     <div class="f-label">${folder.label}</div>
     <div class="f-img-wrap">
       ${cover
-        ? `<img src="${cover}" alt="${folder.label}">`
+        ? `<img src="${cover}" alt="${folder.label}" loading="lazy">`
         : `<div class="f-placeholder">🎨</div>`}
     </div>
     <div class="f-count"><span>${folder.paintings.length}</span><span>עבודות</span></div>
