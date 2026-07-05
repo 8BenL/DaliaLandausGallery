@@ -14,57 +14,91 @@
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
   body {
-    background: #f9f3ec;
+    background: #ede4d8;
     font-family: 'Georgia', serif;
     color: #3d2b1a;
     overflow-y: auto;
     overflow-x: hidden;
+    border-top: 3px solid #3d2b1a;
   }
 
   /* ── NAV ── */
-  nav {
-    position: absolute; top: 28px; right: 44px; z-index: 100;
+  nav { display: none; }
+
+  .hero-nav-stripe {
+    position: absolute;
+    left: 0; right: 0;
+    top: 0; height: 63px;
+    display: flex; align-items: center;
+    justify-content: space-between;
+    padding: 0 44px;
+    z-index: 3;
+    pointer-events: none;
   }
-  nav a {
-    font-size: 20px; letter-spacing: 2px;
+  .hero-nav-stripe::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(to right,
+      #c4887a 0%, #c4887a 12%,
+      rgba(196,135,122,0.25) 26%,
+      rgba(196,135,122,0) 36%,
+      rgba(196,135,122,0) 64%,
+      rgba(196,135,122,0.25) 74%,
+      #c4887a 88%, #c4887a 100%
+    );
+  }
+  .hero-nav-btn {
+    font-size: 18px; letter-spacing: 2px;
     color: #9a7a5a; text-transform: uppercase;
     text-decoration: none; cursor: pointer;
     border: 1px solid #c4a882; padding: 7px 22px;
     display: inline-block; border-radius: 5px;
+    background: #ede4d8;
     transition: color 0.2s, border-color 0.2s;
+    position: relative; z-index: 4;
+    pointer-events: auto;
   }
-  nav a:hover { color: #3d2b1a; border-color: #7a5c3a; }
+  .hero-nav-btn:hover { color: #3d2b1a; border-color: #7a5c3a; }
 
   /* ── HERO ── */
-  .hero { text-align: center; padding: 36px 20px 18px; position: relative; }
+  .hero { text-align: center; padding: 22px 20px 12px; position: relative; background: radial-gradient(ellipse at 50% 0%, #f9f3ec 0%, #d9cbb8 100%); }
   .hero-inner {
     display: inline-flex;
     flex-direction: column;
     align-items: stretch;
+    position: relative; z-index: 2;
   }
   .hero h1 {
-    font-size: 46px; color: #9a7a5a;
-    letter-spacing: 4px; font-weight: normal;
+    font-family: 'Amatic SC', cursive;
+    font-size: 82px; color: #3d2b1a;
+    letter-spacing: 6px; font-weight: 700;
     white-space: nowrap; direction: rtl;
+    line-height: 1;
   }
   .hero h1 .shel {
-    color: #9a7a5a; font-size: 0.72em; vertical-align: middle;
+    color: #9a7a5a; font-size: 0.6em; vertical-align: middle;
   }
   .hero-rule {
     display: flex; align-items: center;
-    gap: 10px; margin-top: 10px;
+    gap: 10px; margin-top: 12px;
   }
   .hero-rule .line   { flex: 1; height: 1px; background: #c4a882; }
   .hero-rule .diamond {
     width: 5px; height: 5px; background: #c4a882;
     transform: rotate(45deg); flex-shrink: 0;
   }
+  .hero-stripe {
+    width: 100%; height: 3px; background: #c4887a;
+    margin-top: 0;
+  }
 
   /* ── SLIDESHOW ── */
   .slideshow-section {
     display: flex; gap: 28px;
-    padding: 22px 40px 28px;
-    min-height: calc(100vh - 140px);
+    padding: 14px 40px 20px;
+    min-height: calc(100vh - 180px);
     align-items: flex-start;
     justify-content: center;
   }
@@ -95,7 +129,7 @@
   .slideshow-frame img.fading { opacity: 0; }
   .slideshow-name {
     text-align: center; font-size: 25px; font-style: italic;
-    color: #9a7a5a; letter-spacing: 1px; direction: rtl;
+    color: #5a3e28; letter-spacing: 1px; direction: rtl;
     padding-bottom: 11px; min-height: 36px;
   }
 
@@ -116,10 +150,10 @@
     display: flex; align-items: center;
     gap: 18px; padding: 0 44px 36px;
   }
-  .section-divider .line  { flex: 1; height: 1px; background: #e8d5c0; }
+  .section-divider .line  { flex: 1; height: 1px; background: #b89878; }
   .section-divider .label {
     font-size: 16px; letter-spacing: 4px;
-    text-transform: uppercase; color: #c4a882; white-space: nowrap;
+    text-transform: uppercase; color: #c4887a; white-space: nowrap;
   }
 
   /* ── ALL WORKS GRID ── */
@@ -130,7 +164,7 @@
     gap: 14px;
   }
   .aw-item {
-    background: #f0e8df; cursor: pointer;
+    background: #ddd0be; cursor: pointer;
     aspect-ratio: 1; overflow: hidden;
     display: flex; align-items: center; justify-content: center;
   }
@@ -157,7 +191,7 @@
   .folder-card { width: 220px; display: flex; flex-direction: column; cursor: pointer; }
   .folder-card .f-label {
     font-size: 18px; letter-spacing: 2px;
-    text-transform: uppercase; color: #7a5c3a;
+    text-transform: uppercase; color: #3d2b1a;
     padding-bottom: 8px; text-align: center;
   }
   .folder-card .f-img-wrap {
@@ -178,7 +212,7 @@
   }
   .folder-card .f-img-wrap .f-placeholder {
     width: 100%; height: 180px;
-    background: #efe4d8;
+    background: #d9cbb8;
     display: flex; align-items: center; justify-content: center;
     font-size: 28px;
   }
@@ -244,10 +278,24 @@
     display: flex; flex-direction: column;
     justify-content: flex-start; gap: 24px;
     min-width: 110px;
-    margin-top: auto; margin-bottom: auto;
+    margin-top: 88px;
   }
+  .lb-price-btn {
+    display: block; margin-top: 200px; align-self: center;
+    background: transparent; color: #c4a882;
+    border: 2px solid #c4a882;
+    text-decoration: none; border-radius: 7px;
+    padding: 13px 18px; text-align: center;
+    cursor: pointer; transition: background 0.2s, color 0.2s;
+  }
+  .lb-price-btn:hover { background: #c4a882; color: #fff; }
+  .lb-price-amount {
+    font-size: 20px; font-weight: bold;
+    display: block; direction: ltr; letter-spacing: 1px;
+  }
+  .lb-price-btn.hidden { display: none; }
   .lb-medium-val {
-    font-size: 20px; font-style: italic;
+    font-size: 20px; font-style: italic; white-space: pre-line;
     color: #9a7a5a; direction: rtl; text-align: right;
     line-height: 1.6; align-self: flex-end; word-wrap: break-word; overflow-wrap: break-word;
   }
@@ -265,7 +313,7 @@
   }
   .lb-img-col { display: flex; flex-direction: column; align-items: center; }
   .lb-info { text-align: center; margin-bottom: 14px; }
-  .lb-title { font-size: 25px; color: #9a7a5a; letter-spacing: 1px; font-style: italic; direction: rtl; }
+  .lb-title { font-size: 25px; color: #5a3e28; letter-spacing: 1px; font-style: italic; direction: rtl; }
   .lb-meta  { font-size: 9px; color: #9a7a5a; letter-spacing: 3px; text-transform: uppercase; margin-top: 5px; }
   .lb-dots  { display: flex; gap: 8px; margin-top: 10px; justify-content: center; }
   .lb-dot   { width: 8px; height: 8px; border-radius: 50%; background: #d4bc9e; cursor: pointer; transition: background 0.2s; }
@@ -303,9 +351,11 @@
   .about-rule .diamond { width: 6px; height: 6px; background: #c4a882; transform: rotate(45deg); flex-shrink: 0; }
   .about-body { flex: 1; min-width: 0; direction: rtl; text-align: right; color: #3d2b1a; font-family: Georgia, serif; }
   .about-body p { font-size: 18px; line-height: 1.9; margin-bottom: 18px; }
+  .about-body p.tight { margin-bottom: 5px; }
+  .about-body p.spacious { margin-top: 36px; }
   .about-body blockquote {
     border-right: 3px solid #c4a882; padding-right: 18px;
-    margin: 20px 0; font-style: italic; color: #5a3e28;
+    margin: 20px 0 20px; font-style: italic; color: #5a3e28;
     font-size: 17px; line-height: 1.9;
   }
   .about-body h3 {
@@ -329,11 +379,11 @@
 
   /* ── MOBILE ── */
   @media (max-width: 600px) {
-    nav { top: 12px; right: 20px; }
-    nav a { font-size: 14px; letter-spacing: 1px; padding: 5px 14px; }
-
-    .hero { padding: 60px 16px 14px; }
-    .hero h1 { font-size: 36px; letter-spacing: 2px; white-space: normal; }
+    .hero { padding: 62px 12px 10px; }
+    .hero h1 { font-size: 46px; letter-spacing: 2px; white-space: normal; }
+    .hero-nav-stripe { height: 54px; padding: 0 12px; }
+    .hero-nav-stripe::after { display: none; }
+    .hero-nav-btn { font-size: 13px; letter-spacing: 1px; padding: 5px 10px; }
 
     .slideshow-section { flex-direction: column; padding: 16px 12px 20px; gap: 20px; min-height: unset; }
     .slideshow-container { max-width: 100%; width: 100%; }
@@ -352,7 +402,8 @@
     .lb-img-col { width: 88vw; }
     .lb-img-wrap { border-width: 5px; width: 88vw; height: 46vh; }
     .lb-side { height: auto; width: 88vw; max-width: unset; }
-    .lb-dims { flex-direction: row; gap: 20px; min-width: unset; height: auto; margin: 0; }
+    .lb-dims { flex-direction: row; gap: 20px; min-width: unset; height: auto; margin: 12px 0 0 0; }
+    .lb-price-btn { margin-top: 16px; }
     .lb-medium-val { font-size: 14px; align-self: center; text-align: center; }
     .lb-title { font-size: 11px; }
 
@@ -370,10 +421,38 @@
     .all-works-section { padding: 24px 12px 40px; }
   }
 
+  /* ── CONTACT MODAL ── */
+  .contact-box {
+    max-width: 480px; margin: 0 auto;
+    padding: 80px 40px 80px; position: relative; text-align: center;
+  }
+  .contact-title {
+    font-size: 34px; letter-spacing: 3px; color: #3d2b1a; font-family: Georgia, serif; margin-bottom: 6px;
+  }
+  .contact-items {
+    margin-top: 52px; display: flex; flex-direction: column; gap: 44px;
+  }
+  .contact-label {
+    font-size: 19px; letter-spacing: 2px;
+    color: #9a7a5a; margin-bottom: 10px; font-family: Georgia, serif;
+  }
+  .contact-value {
+    font-size: 27px; color: #3d2b1a; text-decoration: none;
+    font-family: Georgia, serif; display: block; transition: color 0.2s;
+  }
+  .contact-value:hover { color: #9a7a5a; }
+  @media (max-width: 600px) {
+    .contact-box { padding: 56px 20px; }
+    .contact-value { font-size: 18px; }
+    .contact-label { font-size: 14px; }
+  }
+
   /* ── LANDSCAPE MOBILE ── */
   @media (max-width: 900px) and (orientation: landscape) {
     .hero h1 { font-size: 32px; }
-    .hero { padding: 48px 16px 12px; }
+    .hero { padding: 18px 16px 10px; }
+    .hero-nav-stripe { height: 42px; padding: 0 16px; }
+    .hero-nav-btn { font-size: 12px; padding: 4px 10px; }
     .about-layout { flex-direction: column; gap: 32px; }
     .about-book-wrap { width: 100%; max-width: 220px; margin: 0 auto; padding-top: 0; }
   }
@@ -390,12 +469,14 @@
 <body>
 
 <!-- NAV -->
-<nav>
-  <a id="nav-about">אודות</a>
-</nav>
+<nav><a id="nav-about">אודות</a></nav>
 
 <!-- HERO -->
 <div class="hero">
+  <div class="hero-nav-stripe">
+    <a id="nav-contact" class="hero-nav-btn">צרו קשר</a>
+    <a id="nav-about-2" class="hero-nav-btn" onclick="document.getElementById('nav-about').click()">אודות</a>
+  </div>
   <div class="hero-inner">
     <h1>הגלריה <span class="shel">של</span> דליה לנדאו</h1>
     <div class="hero-rule">
@@ -447,10 +528,16 @@
     <div class="about-body">
       <div class="about-name">דליה לנדאו</div>
       <div class="about-rule"><div class="line"></div><div class="diamond"></div><div class="line"></div></div>
-      <p>דליה לנדאו (הורסקי), ילידת הארץ. אומנית, גרה בכפר-סבא. בוגרת אוניברסיטת בר-אילן בחינוך מיוחד, ספרות משווה ואומנות. המשך לימודים במדרשה לאומנות. תלמידה של יאיר גרבוז, מיצ בייקר, רפי לביא והפסלת שולמית הרטל.</p>
-      <p>עבודותיה של דליה לנדאו מאופיינות בחיפוש מתמיד אחר נושאים, טכניקות וצבעים חדשים. כאדם וכאומן, להתקיים ולחיות משמעו להשתנות, לגדול, להמציא את עצמך בכל בוקר ולשמור על עינים פקוחות ולב פתוח. בעבודתי אני נוטה להשתמש בטכניקות שונות וחומרים משתנים לרבות רשת מתכת, עץ, פרספקס, ציורי אקריליק וצרופים של הכל יחד. אני מציירת רגשות, צובעת בצבעים אופטימיים הווה קשה ואפלולי ומחבקת את תחושת הבדידות. קצב החיים זורם בעבודותי ואני איתו.</p>
+      <p class="tight">דליה לנדאו (הורסקי). אומנית. נולדה בתל-אביב (1951) וגדלה ברמת-גן. בוגרת אוניברסיטת בר-אילן בחינוך מיוחד, ספרות משווה ואומנות.</p>
+      <p class="tight">המשיכה את לימודיה במדרשה לאומנות. תלמידה של יאיר גרבוז, מיטש בקר, רפי לביא והפסלת שולמית הרטל.</p>
+      <p class="tight">עבודותיה של דליה לנדאו מאופיינות בחיפוש מתמיד אחר נושאים, טכניקות וצבעים חדשים. כאדם וכאומן, להתקיים ולחיות משמעו להשתנות, לגדול, להמציא את עצמך בכל בוקר ולשמור על עיניים פקוחות ולב פתוח.</p>
+      <p>בעבודתי אני נוטה להשתמש בטכניקות שונות וחומרים משתנים לרבות רשת מתכת, עץ, פרספקס, ציורי אקריליק וצרופים של הכל יחד. אני מציירת רגשות, צובעת בצבעים אופטימיים הווה קשה ואפלולי ומחבקת את תחושת הבדידות. קצב החיים זורם בעבודותי ואני איתו.</p>
       <p>באחת התערוכות בהן השתתפתי, האוצרת ד"ר נאווה סביליה שדה היטיבה לתאר את עבודתי — ואביא חלק מדבריה כלשונם:</p>
-      <blockquote>משחק בין גבולות לפריצתם, מסגרות וסדקים, באה לידי ביטוי בחתימת ידה של לנדאו, אשר מותירה על פני הקנווס פסיפס של תחושות, דמויות וצבעים בטכניקות מגוונות: קולאז, רישום, עיבוי וחריטה. מתח מתמיד קיים ביצירתה של לנדאו בין מסגרת לחירות. מתח זה בא לידי ביטוי בתחילתה של עבודה, לעיתים ללא כל תכנית תוך הנחת צבע חופשית ואינטואיטיבית, ההופכת בסופו של תהליך ליצירה מודעת. ציוריה מתאפיינים בצבעוניות עזה ולעיתים לירית, נטייה ברורה לעבר המופשט, כאשר לפתע נסדק מערך זה על ידי רישום קלאסי מפתיע, עשוי היטב. ניגודים אלו הם המעניקים ליצירתה חותם אישי מיוחד במינו — דווקא המסגרות הסדוקות הן אלו הבוראות את התהליכים המעניינים והמפרים ביותר בחיינו.</blockquote>
+      <blockquote>"משחק בין גבולות לפריצתם, מסגרות וסדקים, באה לידי ביטוי בחתימת ידה של לנדאו, אשר מותירה על פני הקנווס פסיפס של תחושות, דמויות וצבעים בטכניקות מגוונות: קולאז, רישום, עיבוי וחריטה. מתח מתמיד קיים ביצירתה של לנדאו בין מסגרת לחירות. מתח זה בא לידי ביטוי בתחילתה של עבודה, לעיתים ללא כל תכנית תוך הנחת צבע חופשית ואינטואיטיבית, ההופכת בסופו של תהליך ליצירה מודעת. ציוריה מתאפיינים בצבעוניות עזה ולעיתים לירית, נטייה ברורה לעבר המופשט, כאשר לפתע נסדק מערך זה על ידי רישום קלאסי מפתיע, עשוי היטב. ניגודים אלו הם המעניקים ליצירתה חותם אישי מיוחד במינו — דווקא המסגרות הסדוקות הן אלו הבוראות את התהליכים המעניינים והמפרים ביותר בחיינו."</blockquote>
+      <p class="tight">זה שנים רבות שיצירותיה של דליה לנדאו מוצגות במגוון תערוכות וגלריות ברחבי הארץ.</p>
+      <p class="tight">בשנים...? עבודותיה היו מוצגות, כמו גם חלל יצירתה הפעיל - הסטודיו שלה, בגלריית "גלריה 5" שבכפר מלל (הוד השרון), יחד עם ארבעה אומנים נוספים.</p>
+      <p class="tight">בשנים אלו אף לימדה ציור בהתנדבות ב"בית היוצר" ברעננה.</p>
+      <p class="spacious">להלן רשימה מקוצרת של תערוכות זכורות במיוחד בהן הציגה.</p>
       <h3>תערוכות נבחרות</h3>
       <ul>
         <li>גלריית האגם, רעננה — "שלוש ביחד ולחוד" | "עצמאות"</li>
@@ -463,12 +550,35 @@
         <li>מרכז ענב לתרבות, תל-אביב — "100 שנה לת"א — אומנים יוצרים"</li>
         <li>גלריית מצפה הימים — "על נופים ואנשים"</li>
       </ul>
-      <p>מזה מספר שנים יוצרת דליה לנדאו בסטודיו שלה, בגלריה 5 שבכפר מלל (הוד השרון), יחד עם חמישה אומנים. מלמדת ציור בבית היוצר ברעננה.</p>
+      <p class="spacious">בשנים האחרונות מתגוררת דליה לנדאו בכפר סבא הירוקה.</p>
     </div>
     <div class="about-book-wrap">
       <img src="Digital%20images/%D7%9B%D7%A8%D7%99%D7%9B%D7%AA%20%D7%94%D7%A1%D7%A4%D7%A8%20%D7%90%D7%A1%D7%AA%D7%A8.jpeg" alt="כריכת הספר אסתר">
       <div class="about-book-caption">ציור של דליה לנדאו על כריכת הספר-אסתר</div>
     </div>
+    </div>
+  </div>
+</div>
+
+<!-- CONTACT MODAL -->
+<div class="about-modal" id="contact-modal">
+  <div class="contact-box">
+    <span class="about-close" id="contact-close">&#x2715;</span>
+    <div class="contact-title">צרו קשר</div>
+    <div class="about-rule"><div class="line"></div><div class="diamond"></div><div class="line"></div></div>
+    <div class="contact-items">
+      <div class="contact-item">
+        <div class="contact-label">טלפון</div>
+        <a href="tel:0504500572" class="contact-value">בן: 050-450-0572</a>
+      </div>
+      <div class="contact-item">
+        <div class="contact-label">דוא"ל</div>
+        <a href="mailto:8landau@gmail.com" class="contact-value">8landau@gmail.com</a>
+      </div>
+      <div class="contact-item">
+        <div class="contact-label">וואטסאפ</div>
+        <a href="https://wa.me/972504500572" target="_blank" rel="noopener" class="contact-value">בן: 050-450-0572</a>
+      </div>
     </div>
   </div>
 </div>
@@ -488,7 +598,7 @@
         </div>
         <div class="lb-side">
           <div class="lb-medium-val" id="lb-medium"></div>
-          <div class="lb-dims">
+          <div class="lb-dims" id="lb-dims">
             <div class="lb-measurements">
               <div class="lb-dim-field">
                 <span class="lb-dim-label">אורך:</span>
@@ -500,6 +610,9 @@
               </div>
             </div>
           </div>
+          <a class="lb-price-btn hidden" id="lb-price-btn" href="#" target="_blank">
+            <span class="lb-price-amount" id="lb-price-amount"></span>
+          </a>
         </div>
       </div>
       <div class="lb-dots" id="lb-dots"></div>
@@ -511,42 +624,44 @@
 <script>
 const allPaintings = [
   { src: 'images/11%20%D7%91%D7%A1%D7%A4%D7%98%D7%9E%D7%91%D7%A8%20%20%20%D7%90%D7%A7%D7%A8%D7%99%D7%9C%D7%99%D7%A7%20%D7%A2%D7%9C%20%D7%A7%D7%A0%D7%91%D7%A1%20%20100-70%20%D7%A1%D7%9E.JPG', title: "11 בספטמבר", folder: 'Collection 1', medium: 'אקריליק על קנבס', length: '100 ס"מ', width: '70 ס"מ' },
-  { src: 'images/120-120.JPG', title: "תמונה בלי שם 11", folder: 'Collection 2', medium: 'אקריליק על קנבס', length: '120 ס"מ', width: '120 ס"מ' },
-  { src: 'images/120-160.JPG', title: "תמונה בלי שם 12", folder: 'Collection 1', medium: 'אקריליק על קנבס', length: '120 ס"מ', width: '160 ס"מ' },
-  { src: 'images/120-90%20-%20Copy.JPG', title: "תמונה בלי שם 13", folder: 'Collection 2', medium: 'אקריליק על קנבס', length: '120 ס"מ', width: '90 ס"מ' },
-  { src: 'images/197.JPG', title: "תמונה בלי שם 14", folder: 'Collection 1', medium: 'אקריליק על קנבס' },
-  { src: 'images/210-160%20%20%D7%91.jpg', title: "תמונה בלי שם 15", folder: 'Collection 2', medium: 'אקריליק על קנבס', length: '210 ס"מ', width: '160 ס"מ' },
-  { src: 'images/210-160.jpg', title: "תמונה בלי שם 16", folder: 'Collection 1', medium: 'אקריליק על קנבס', length: '210 ס"מ', width: '160 ס"מ' },
-  { src: 'images/225.JPG', title: "תמונה בלי שם 17", folder: 'Collection 2' },
-  { src: 'images/226.JPG', title: "תמונה בלי שם 18", folder: 'Collection 1' },
-  { src: 'images/334.JPG', title: "תמונה בלי שם 19", folder: 'Collection 2', medium: 'אקריליק על קנבס' },
-  { src: 'images/378.JPG', title: "תמונה בלי שם 20", folder: 'Collection 1', medium: 'אקריליק על קנבס' },
-  { src: 'images/60-120.jpg', title: "תמונה בלי שם 21", folder: 'Collection 2', medium: 'אקריליק על קנבס', length: '60 ס"מ', width: '120 ס"מ' },
-  { src: 'images/dalia00002-2.jpg', title: "תמונה בלי שם 22", folder: 'Collection 1', medium: 'אקריליק על קנבס' },
-  { src: 'images/lando_00009.jpg', title: "תמונה בלי שם 23", folder: 'Collection 2', medium: 'אקריליק על קנבס' },
-  { src: 'images/Library%20-%20249.jpg', title: "תמונה בלי שם 24", folder: 'Collection 1', medium: 'אקריליק על קנבס' },
-  { src: 'images/Library%20-%20255.jpg', title: "תמונה בלי שם 25", folder: 'Collection 2' },
-  { src: 'images/Library%20-%20313.jpg', title: "ספריה 2", folder: 'Collection 1', length: '50 ס"מ', width: '80 ס"מ' },
-  { src: 'images/Library%20-%20314.jpg', title: "ספריה 1", folder: 'Collection 2', length: '50 ס"מ', width: '40 ס"מ' },
-  { src: 'images/Untitled00029.jpg', title: "תמונה בלי שם 28", folder: 'Collection 1', length: '70 ס"מ', width: '50 ס"מ' },
+  { src: 'images/120-120.JPG', title: "על שפת הנחל", folder: 'Collection 2', medium: 'אקריליק על קנבס', length: '120 ס"מ', width: '120 ס"מ' },
+  { src: 'images/120-160.JPG', title: "נשף מסכות", folder: 'Collection 1', medium: 'אקריליק על קנבס', length: '120 ס"מ', width: '160 ס"מ' },
+  { src: 'images/120-90%20-%20Copy.JPG', title: "שמות ראש", folder: 'Collection 2', medium: 'אקריליק על קנבס', length: '120 ס"מ', width: '90 ס"מ' },
+  { src: 'images/197.JPG', title: "פטיו", folder: 'Collection 1', medium: 'אקריליק על קנבס' },
+  { src: 'images/210-160%20%20%D7%91.jpg', title: "מחכים", folder: 'Collection 2', medium: 'אקריליק על קנבס', length: '210 ס"מ', width: '160 ס"מ' },
+  { src: 'images/210-160.jpg', title: "שלוש עומדות", folder: 'Collection 1', medium: 'אקריליק על קנבס', length: '210 ס"מ', width: '160 ס"מ' },
+  { src: 'images/225.JPG', title: "בלי שם 17", folder: 'Collection 2', medium: 'דיו וצבע מים', length: '20 ס"מ', width: '15 ס"מ' },
+  { src: 'images/226.JPG', title: "בלי שם 18", folder: 'Collection 2', medium: 'דיו וצבע מים', length: '20 ס"מ', width: '15 ס"מ' },
+  { src: 'images/334.JPG', title: "סתם סולם", folder: 'Collection 2', medium: 'אקריליק על קנבס' },
+  { src: 'images/378.JPG', title: "קסם בשלבים", folder: 'Collection 1', medium: 'אקריליק על קנבס' },
+  { src: 'images/60-120.jpg', title: "הצגה יומית", folder: 'Collection 2', medium: 'אקריליק על קנבס', length: '60 ס"מ', width: '120 ס"מ' },
+  { src: 'images/dalia00002-2.jpg', title: "בהפסקה", folder: 'Collection 1', medium: 'אקריליק על קנבס' },
+  { src: 'images/lando_00009.jpg', title: "על גג מקלט ציבורי", folder: 'Collection 2', medium: 'אקריליק על קנבס' },
+  { src: 'images/Library%20-%20249.jpg', title: "נמל", folder: 'Collection 1', medium: 'אקריליק על קנבס' },
+  { src: 'images/Library%20-%20255.jpg', title: "קליק", folder: 'Collection 2', medium: 'אקריליק על קנבס' },
+  { src: 'images/Library%20-%20314.jpg', title: "ספריה 1", folder: 'Collection 1', medium: 'אקריליק על קנבס', length: '50 ס"מ', width: '40 ס"מ' },
+  { src: 'images/Library%20-%20313.jpg', title: "ספריה 2", folder: 'Collection 1', medium: 'אקריליק על קנבס', length: '50 ס"מ', width: '80 ס"מ' },
+  { src: 'images/Untitled00029.jpg', title: "בלובי", folder: 'Collection 1', length: '70 ס"מ', width: '50 ס"מ' },
+  { src: 'images/Untitled00257.jpg', title: "נחה בעירום", folder: 'Sketches', medium: 'רישום עם כתמי דיו', length: '75 ס"מ', width: '60 ס"מ' },
+  { src: 'images/Untitled00259.jpg', title: "מבט מהצד", folder: 'Sketches', medium: 'רישום עם כתמי דיו', length: '40 ס"מ', width: '30 ס"מ' },
+  { src: 'images/Untitled00261.jpg', title: "אישה בכובע", folder: 'Sketches', medium: 'רישום עם כתמי דיו', length: '50 ס"מ', width: '40 ס"מ' },
+  { src: 'images/Untitled00260.jpg', title: "בשורה קשה", folder: 'Sketches', medium: 'רישום עם כתמי דיו', length: '50 ס"מ', width: '35 ס"מ' },
+  { src: 'images/Untitled00262.jpg', title: "חושפת כתף", folder: 'Sketches', medium: 'רישום עם כתמי דיו', length: '55 ס"מ', width: '45 ס"מ' },
+  { src: 'images/Untitled00264.jpg', title: "לוסילה", folder: 'Sketches', medium: 'רישום עם כתמי דיו', length: '30 ס"מ', width: '25 ס"מ' },
+  { src: 'images/Untitled00265.jpg', title: "עיניים טובות", folder: 'Sketches', medium: 'רישום עם כתמי דיו', length: '30 ס"מ', width: '25 ס"מ' },
+  { src: 'images/Untitled00266.jpg', title: "מולאן רוז'", folder: 'Sketches', medium: 'רישום עם כתמי דיו', length: '23 ס"מ', width: '28 ס"מ' },
+  { src: 'images/Untitled00267.jpg', title: "פושט חולצה", folder: 'Sketches', medium: 'רישום עם כתמי דיו', length: '30 ס"מ', width: '25 ס"מ' },
+  { src: 'images/Untitled00268.jpg', title: "ממתינה", folder: 'Sketches', medium: 'רישום עם כתמי דיו', length: '30 ס"מ', width: '25 ס"מ' },
+  { src: 'images/Untitled00269.jpg', title: "הכנות לאירוע", folder: 'Sketches', medium: 'רישום עם כתמי דיו', length: '25 ס"מ', width: '30 ס"מ' },
+  { src: 'images/%D7%A0%D7%97%D7%99%D7%AA%D7%94%20%D7%9E%D7%95%D7%A9%D7%9C%D7%9E%D7%AA.jpeg', title: "נחיתה מושלמת", folder: 'Sketches', medium: 'רישום עם כתמי דיו', length: '25 ס"מ', width: '30 ס"מ' },
   { src: 'images/Untitled00030.jpg', title: "רישום 21", folder: 'Sketches', medium: 'רישום', length: '55 ס"מ', width: '50 ס"מ' },
-  { src: 'images/Untitled00033.jpg', title: "תמונה בלי שם 29", folder: 'Collection 1', length: '35 ס"מ', width: '40 ס"מ' },
-  { src: 'images/Untitled00257.jpg', title: "רישום 01", folder: 'Sketches', medium: 'רישום עם כתמי דיו', length: '75 ס"מ', width: '60 ס"מ' },
-  { src: 'images/Untitled00259.jpg', title: "רישום 02", folder: 'Sketches', medium: 'רישום עם כתמי דיו', length: '40 ס"מ', width: '30 ס"מ' },
-  { src: 'images/Untitled00260.jpg', title: "רישום 03", folder: 'Sketches', medium: 'רישום עם כתמי דיו', length: '50 ס"מ', width: '35 ס"מ' },
-  { src: 'images/Untitled00261.jpg', title: "רישום 04", folder: 'Sketches', medium: 'רישום עם כתמי דיו', length: '50 ס"מ', width: '40 ס"מ' },
-  { src: 'images/Untitled00262.jpg', title: "רישום 05", folder: 'Sketches', medium: 'רישום עם כתמי דיו', length: '55 ס"מ', width: '45 ס"מ' },
-  { src: 'images/Untitled00264.jpg', title: "רישום 06", folder: 'Sketches', medium: 'רישום עם כתמי דיו', length: '30 ס"מ', width: '25 ס"מ' },
-  { src: 'images/Untitled00265.jpg', title: "רישום 07", folder: 'Sketches', medium: 'רישום עם כתמי דיו', length: '30 ס"מ', width: '25 ס"מ' },
-  { src: 'images/Untitled00266.jpg', title: "רישום 08", folder: 'Sketches', medium: 'רישום עם כתמי דיו', length: '23 ס"מ', width: '28 ס"מ' },
-  { src: 'images/Untitled00267.jpg', title: "רישום 09", folder: 'Sketches', medium: 'רישום עם כתמי דיו', length: '30 ס"מ', width: '25 ס"מ' },
-  { src: 'images/Untitled00268.jpg', title: "רישום 10", folder: 'Sketches', medium: 'רישום עם כתמי דיו', length: '30 ס"מ', width: '25 ס"מ' },
-  { src: 'images/Untitled00269.jpg', title: "רישום 11", folder: 'Sketches', medium: 'רישום עם כתמי דיו', length: '25 ס"מ', width: '30 ס"מ' },
+  { src: 'images/%D7%9C%D7%95%D7%A1%D7%99.jpg', title: "לוסי", folder: 'Sketches', length: '90 ס"מ', width: '70 ס"מ' },
+  { src: 'images/%D7%9C%D7%95%D7%A1%D7%99%202.jpg', title: "לוסי 2", folder: 'Sketches', length: '80 ס"מ', width: '60 ס"מ' },
+  { src: 'images/Untitled00033.jpg', title: "מוכרת ממתקים", folder: 'Sketches', medium: 'רישום', length: '35 ס"מ', width: '40 ס"מ' },
   { src: 'images/%D7%90%D7%93%D7%95%D7%9E%D7%95%D7%AA%20%20100-70.JPG', title: "אדומות", folder: 'Collection 1', medium: 'אקריליק על קנבס', length: '100 ס"מ', width: '70 ס"מ' },
-  { src: 'images/%D7%90%D7%95%D7%93%D7%99%2020-13.JPG', title: "רישום - אודי", folder: 'Sketches', medium: 'רישום', length: '20 ס"מ', width: '13 ס"מ' },
   { src: 'images/%D7%90%D7%95%D7%A8%D7%99%D7%99%D7%A0%D7%98%20%D7%90%D7%A7%D7%A8%D7%99%D7%9C%D7%99%D7%A7%20%D7%A2%D7%9C%20%D7%A7%D7%A0%D7%91%D7%A1%2060-45%20%D7%A1%D7%9E.JPG', title: "אוריינט", folder: 'Collection 1', medium: 'אקריליק על קנבס', length: '60 ס"מ', width: '45 ס"מ' },
   { src: 'images/%D7%90%D7%97%D7%93%20%D7%91%D7%90%D7%95%D7%A8%20%20100-80.JPG', title: "אחד באור", folder: 'Collection 2', medium: 'אקריליק על קנבס', length: '100 ס"מ', width: '80 ס"מ' },
-  { src: 'images/%D7%90%D7%9E%D7%94%D7%95%D7%AA%20%20100-90.jpg', title: "אמהות", folder: 'Collection 1', length: '100 ס"מ', width: '90 ס"מ' },
+  { src: 'images/%D7%90%D7%9E%D7%94%D7%95%D7%AA%20%20100-90.jpg', title: "אמהות", folder: 'Collection 1', medium: 'אקריליק על קנבס', length: '100 ס"מ', width: '90 ס"מ' },
   { src: 'images/%D7%90%D7%A0%D7%A9%D7%99%D7%9D%20%D7%9B%D7%AA%D7%95%D7%9E%D7%99%D7%9D%20%20%20%D7%90%D7%A7%D7%A8%D7%99%D7%9C%D7%99%D7%A7%20%D7%A2%D7%9C%20%D7%A7%D7%A0%D7%91%D7%A1%20%20100-100%20%D7%A1%D7%9E.JPG', title: "אנשים כתומים", folder: 'Collection 2', medium: 'אקריליק על קנבס', length: '100 ס"מ', width: '100 ס"מ' },
   { src: 'images/%D7%90%D7%A0%D7%A9%D7%99%D7%9D%20%D7%A2%D7%92%D7%95%D7%9C%D7%99%D7%9D%20100-100.JPG', title: "אנשים עגולים", folder: 'Collection 1', medium: 'אקריליק על קנבס', length: '100 ס"מ', width: '100 ס"מ' },
   { src: 'images/%D7%90%D7%A0%D7%A9%D7%99%D7%9D%20%D7%A9%D7%97%D7%95%D7%A8%20%D7%95%D7%9C%D7%91%D7%9F%20%20%D7%90%D7%A7%D7%A8%D7%99%D7%9C%D7%99%D7%A7%20%20%20%20120-100%20%D7%A1%D7%9E.JPG', title: "אנשים שחור ולבן", folder: 'Collection 2', medium: 'אקריליק על קנבס', length: '120 ס"מ', width: '100 ס"מ' },
@@ -556,29 +671,29 @@ const allPaintings = [
   { src: 'images/%D7%90%D7%A9%D7%94%20%D7%91%D7%90%D7%95%D7%A8%20%20100-75.JPG', title: "אשה באור", folder: 'Collection 1', medium: 'אקריליק על קנבס', length: '100 ס"מ', width: '75 ס"מ' },
   { src: 'images/%D7%90%D7%A9%D7%94%20%D7%91%D7%9B%D7%AA%D7%95%D7%9D%20%20100-75.JPG', title: "אשה בכתום", folder: 'Collection 2', medium: 'אקריליק על קנבס', length: '100 ס"מ', width: '75 ס"מ' },
   { src: 'images/%D7%90%D7%A9%D7%94%20%D7%91%D7%9E%D7%A8%D7%90%D7%94%20%20120-180.jpg', title: "אשה במראה", folder: 'Collection 1', medium: 'אקריליק על קנבס', length: '120 ס"מ', width: '180 ס"מ' },
-  { src: 'images/%D7%90%D7%A9%D7%94%20%D7%91%D7%A8%D7%A9%D7%AA%20100-75.JPG', title: "אשה ברשת", folder: 'Sculptures', length: '100 ס"מ', width: '75 ס"מ' },
+  { src: 'images/%D7%90%D7%A9%D7%94%20%D7%91%D7%A8%D7%A9%D7%AA%20100-75.JPG', title: "אשה ברשת", folder: 'Sculptures', medium: "ג'יקלה", length: '100 ס"מ', width: '75 ס"מ' },
   { src: 'images/%D7%90%D7%A9%D7%94%20%D7%97%D7%96%D7%A7%D7%94%20%20120-60.jpg', title: "אשה חזקה", folder: 'Collection 1', medium: 'אקריליק על קנבס', length: '120 ס"מ', width: '60 ס"מ' },
   { src: 'images/%D7%90%D7%A9%D7%94%20%D7%99%D7%95%D7%A9%D7%91%D7%AA%20%20%D7%92%D7%99%D7%A7%D7%9C%D7%94%20%20%28100-70%29%203.jpg', title: "אשה יושבת", folder: 'Sculptures', medium: "ג'יקלה", length: '100 ס"מ', width: '210 ס"מ' },
   { src: 'images/%D7%90%D7%A9%D7%94%20%D7%9E%D7%90%D7%97%D7%95%D7%A8%D7%99%20%D7%95%D7%99%D7%9C%D7%95%D7%9F%20%20120-60.JPG', title: "אשה מאחורי וילון", folder: 'Collection 1', medium: 'אקריליק על קנבס', length: '120 ס"מ', width: '60 ס"מ' },
   { src: 'images/%D7%91%D7%98%D7%A8%D7%99%D7%91%D7%95%D7%A0%D7%94%20%20100-120.JPG', title: "בטריבונה", folder: 'Collection 2', medium: 'אקריליק על קנבס', length: '100 ס"מ', width: '120 ס"מ' },
   { src: 'images/%D7%91%D7%9C%D7%95%D7%9F%20%D7%9B%D7%97%D7%95%D7%9C%20%2070-120.JPG', title: "בלון כחול", folder: 'Collection 1', medium: 'אקריליק על קנבס', length: '70 ס"מ', width: '120 ס"מ' },
   { src: 'images/%D7%91%D7%9E%D7%A4%D7%A2%D7%9C%20100-80.JPG', title: "במפעל", folder: 'Collection 2', medium: 'אקריליק על קנבס', length: '100 ס"מ', width: '80 ס"מ' },
-  { src: 'images/%D7%91%D7%A4%D7%A0%D7%99%D7%9D%20%D7%90%D7%95%20%D7%91%D7%97%D7%95%D7%A5%2080-100.JPG', title: "בפנים או בחוץ", folder: 'Collection 1', length: '80 ס"מ', width: '100 ס"מ' },
+  { src: 'images/%D7%91%D7%A4%D7%A0%D7%99%D7%9D%20%D7%90%D7%95%20%D7%91%D7%97%D7%95%D7%A5%2080-100.JPG', title: "בפנים או בחוץ", folder: 'Collection 1', medium: 'אקריליק על קנבס', length: '80 ס"מ', width: '100 ס"מ' },
   { src: 'images/%D7%91%D7%A7%D7%99%D7%91%D7%95%D7%A5%20%20%20%D7%90%D7%A7%D7%A8%D7%99%D7%9C%D7%99%D7%A7%20%D7%A2%D7%9C%20%D7%A7%D7%A0%D7%91%D7%A1%20%2050-60%20%D7%A1%D7%9E.JPG', title: "בקיבוץ", folder: 'Collection 2', medium: 'אקריליק על קנבס', length: '50 ס"מ', width: '60 ס"מ' },
   { src: 'images/%D7%91%D7%A8%D7%95%D7%A9%D7%99%D7%9D%20%20%D7%90%D7%A7%D7%A8%D7%99%D7%9C%D7%99%D7%A7%20%D7%A2%D7%9C%20%D7%A7%D7%A0%D7%91%D7%A1%20%2080-100%20%D7%A1%D7%9E.JPG', title: "ברושים", folder: 'Collection 1', medium: 'אקריליק על קנבס', length: '80 ס"מ', width: '100 ס"מ' },
   { src: 'images/%D7%91%D7%A9%D7%AA%D7%99%20%D7%99%D7%93%D7%99%20%D7%97%D7%99%D7%91%D7%A8%D7%AA%D7%99%20%20160-115.JPG', title: "בשתי ידי חיברתי", folder: 'Collection 2', medium: 'אקריליק על קנבס', length: '160 ס"מ', width: '115 ס"מ' },
   { src: 'images/%D7%91%D7%AA%D7%97%D7%AA%D7%99%D7%AA%20100-100.jpg', title: "בתחתית", folder: 'Collection 1', medium: 'אקריליק על קנבס', length: '100 ס"מ', width: '100 ס"מ' },
   { src: 'images/%D7%91%D7%AA%D7%A2%D7%A8%D7%95%D7%9B%D7%94%20%2060-90.jpg', title: "בתערוכה", folder: 'Collection 2', medium: 'אקריליק על קנבס', length: '60 ס"מ', width: '90 ס"מ' },
-  { src: 'images/%D7%92%D7%A8%D7%A4%D7%99%D7%98%D7%99.jpg', title: "גרפיטי", folder: 'Collection 1' },
+  { src: 'images/%D7%92%D7%A8%D7%A4%D7%99%D7%98%D7%99.jpg', title: "גרפיטי", folder: 'Collection 1', medium: 'אקריליק על קנבס' },
   { src: 'images/%D7%93%D7%95%D7%9E%D7%9D%20%20%D7%90%D7%A7%D7%A8%D7%99%D7%9C%D7%99%D7%A7%20%D7%A2%D7%9C%20%D7%A7%D7%A0%D7%91%D7%A1%20%2040-30%20%D7%A1%D7%9E.JPG', title: "דומם", folder: 'Collection 2', medium: 'אקריליק על קנבס', length: '40 ס"מ', width: '30 ס"מ' },
   { src: 'images/%D7%94%D7%93%D7%99%D7%99%D7%92%20%20120-120.jpg', title: "הדייג", folder: 'Collection 1', medium: 'אקריליק על קנבס', length: '120 ס"מ', width: '120 ס"מ' },
   { src: 'images/%D7%94%D7%95%D7%95%D7%90%D7%A0%D7%94%2080-100.JPG', title: "הוואנה", folder: 'Collection 2', medium: 'אקריליק על קנבס', length: '80 ס"מ', width: '100 ס"מ' },
   { src: 'images/%D7%94%D7%95%D7%9C%D7%9A%20%D7%91%D7%A9%D7%93%D7%95%D7%AA%20%2040-50.jpg', title: "הולך בשדות", folder: 'Collection 1', medium: 'אקריליק על קנבס', length: '40 ס"מ', width: '50 ס"מ' },
-  { src: 'images/%D7%94%D7%A8%D7%99%D7%95%D7%9F%2024-20.JPG', title: "הריון", folder: 'Sculptures', length: '24 ס"מ', width: '20 ס"מ' },
+  { src: 'images/%D7%94%D7%A8%D7%99%D7%95%D7%9F%2024-20.JPG', title: "הריון", folder: 'Sculptures', medium: 'פיסול ברשת', length: '24 ס"מ', width: '20 ס"מ' },
   { src: 'images/%D7%94%D7%A9%D7%AA%D7%A7%D7%A4%D7%95%D7%AA%20%20%D7%90%D7%A7%D7%A8%D7%99%D7%9C%D7%99%D7%A7%20%D7%A2%D7%9C%20%D7%A7%D7%94%D7%91%D7%A1%20%2050-70%20%D7%A1%D7%9E.jpg', title: "השתקפות", folder: 'Collection 1', medium: 'אקריליק על קנבס', length: '50 ס"מ', width: '70 ס"מ' },
   { src: 'images/%D7%94%D7%AA%D7%A8%D7%97%D7%A9%D7%95%D7%AA%20%20120-60.JPG', title: "התרחשות", folder: 'Collection 2', medium: 'אקריליק על קנבס', length: '120 ס"מ', width: '60 ס"מ' },
   { src: 'images/%D7%95%D7%A8%D7%94%20%2040-30.jpg', title: "ורה", folder: 'Collection 1', medium: 'אקריליק על קנבס', length: '40 ס"מ', width: '30 ס"מ' },
-  { src: 'images/%D7%97%D7%95%D7%A4%D7%99%D7%9D%2050-100.jpg', title: "חופים", folder: 'Collection 2', length: '50 ס"מ', width: '100 ס"מ' },
+  { src: 'images/%D7%97%D7%95%D7%A4%D7%99%D7%9D%2050-100.jpg', title: "חופים", folder: 'Collection 2', medium: 'אקריליק על קנבס', length: '50 ס"מ', width: '100 ס"מ' },
   { src: 'images/%D7%97%D7%99%D7%98%D7%94%20%20100-100.jpg', title: "חיטה", folder: 'Collection 1', medium: 'אקריליק על קנבס', length: '100 ס"מ', width: '100 ס"מ' },
   { src: 'images/%D7%97%D7%9C%D7%9C%D7%99%D7%9D%20%20210-180.JPG', title: "חללים", folder: 'Collection 2', medium: 'אקריליק על קנבס', length: '210 ס"מ', width: '180 ס"מ' },
   { src: 'images/%D7%97%D7%9E%D7%A0%D7%99%D7%95%D7%AA%20160-100.JPG', title: "חמניות", folder: 'Collection 1', medium: 'אקריליק על קנבס', length: '160 ס"מ', width: '100 ס"מ' },
@@ -595,14 +710,12 @@ const allPaintings = [
   { src: 'images/%D7%9B%D7%91%D7%A9%D7%99%D7%9D%20%20100-80.JPG', title: "כבשים", folder: 'Collection 2', medium: 'אקריליק על קנבס', length: '100 ס"מ', width: '80 ס"מ' },
   { src: 'images/%D7%9B%D7%95%D7%91%D7%A1%D7%95%D7%AA%20%20100-200.jpg', title: "כובסות", folder: 'Collection 1', medium: 'אקריליק על קנבס', length: '100 ס"מ', width: '200 ס"מ' },
   { src: 'images/%D7%9B%D7%97%D7%95%D7%9C%20160-150.JPG', title: "כחול", folder: 'Collection 2', medium: 'אקריליק על קנבס', length: '160 ס"מ', width: '150 ס"מ' },
+  { src: 'images/%D7%9B%D7%9C%20%D7%90%D7%97%D7%AA%20%D7%91%D7%A9%D7%9C%D7%94%201%20%20%20100-100.jpg', title: "כל אחת בשלה 1", folder: 'Collection 1', medium: 'אקריליק על קנבס', length: '100 ס"מ', width: '100 ס"מ' },
   { src: 'images/%D7%9B%D7%9C%20%D7%90%D7%97%D7%AA%20%D7%91%D7%A9%D7%9C%D7%94%20%202%20%20%20%20100-100.JPG', title: "כל אחת בשלה 2", folder: 'Collection 1', medium: 'אקריליק על קנבס', length: '100 ס"מ', width: '100 ס"מ' },
-  { src: 'images/%D7%9B%D7%9C%20%D7%90%D7%97%D7%AA%20%D7%91%D7%A9%D7%9C%D7%94%201%20%20%20100-100.jpg', title: "כל אחת בשלה 1", folder: 'Collection 2', medium: 'אקריליק על קנבס', length: '100 ס"מ', width: '100 ס"מ' },
   { src: 'images/%D7%9B%D7%A1%D7%90%20%20120-100.jpg', title: "כסא", folder: 'Collection 1', medium: 'אקריליק על קנבס', length: '120 ס"מ', width: '100 ס"מ' },
-  { src: 'images/%D7%9B%D7%AA%D7%95%D7%9D%20%20%D7%A8%D7%99%D7%A9%D7%95%D7%9D%20%D7%A4%D7%97%D7%9D%20%20%2070-50%20%D7%A1%D7%9E.JPG', title: "כתום", folder: 'Collection 2', medium: 'רישום פחם', length: '70 ס"מ', width: '50 ס"מ' },
-  { src: 'images/%D7%9C%D7%95%D7%A1%D7%99%202.jpg', title: "לוסי 2", folder: 'Collection 1', length: '80 ס"מ', width: '60 ס"מ' },
-  { src: 'images/%D7%9C%D7%95%D7%A1%D7%99.jpg', title: "לוסי", folder: 'Collection 2', length: '90 ס"מ', width: '70 ס"מ' },
-  { src: 'images/%D7%9C%D7%9C%D7%90%20%D7%9B%D7%95%D7%AA%D7%A8%D7%AA%20%20120-120.jpg', title: "ללא כותרת", folder: 'Collection 1', medium: 'אקריליק על קנבס', length: '120 ס"מ', width: '120 ס"מ' },
-  { src: 'images/%D7%9C%D7%9C%D7%90%20%D7%9B%D7%95%D7%AA%D7%A8%D7%AA%2090-150.JPG', title: "ללא כותרת", folder: 'Collection 2', medium: 'אקריליק על קנבס', length: '90 ס"מ', width: '150 ס"מ' },
+  { src: 'images/%D7%9B%D7%AA%D7%95%D7%9D%20%20%D7%A8%D7%99%D7%A9%D7%95%D7%9D%20%D7%A4%D7%97%D7%9D%20%20%2070-50%20%D7%A1%D7%9E.JPG', title: "כתום", folder: 'Sketches', medium: 'רישום פחם', length: '70 ס"מ', width: '50 ס"מ' },
+  { src: 'images/%D7%9C%D7%9C%D7%90%20%D7%9B%D7%95%D7%AA%D7%A8%D7%AA%20%20120-120.jpg', title: "זו לצד זה", folder: 'Collection 1', medium: 'אקריליק על קנבס', length: '120 ס"מ', width: '120 ס"מ' },
+  { src: 'images/%D7%9C%D7%9C%D7%90%20%D7%9B%D7%95%D7%AA%D7%A8%D7%AA%2090-150.JPG', title: "מפה ומשם", folder: 'Collection 2', medium: 'אקריליק על קנבס', length: '90 ס"מ', width: '150 ס"מ' },
   { src: 'images/%D7%9E%D7%91%D7%98%20%D7%98%D7%9C%D7%A1%D7%A7%D7%95%D7%A4%D7%99%20%2070-70.jpg', title: "מבט טלסקופי", folder: 'Collection 1', medium: 'אקריליק על קנבס', length: '70 ס"מ', width: '70 ס"מ' },
   { src: 'images/%D7%9E%D7%94%20%D7%91%D7%99%D7%A0%D7%A0%D7%95%20%20120-60.JPG', title: "מה בינינו", folder: 'Collection 2', medium: 'אקריליק על קנבס', length: '120 ס"מ', width: '60 ס"מ' },
   { src: 'images/%D7%9E%D7%95%D7%93%D7%9C%20%D7%91%D7%95%D7%A8%D7%95%D7%93%20100-100.JPG', title: "מודל בורוד", folder: 'Collection 1', medium: 'אקריליק על קנבס', length: '100 ס"מ', width: '100 ס"מ' },
@@ -611,18 +724,18 @@ const allPaintings = [
   { src: 'images/%D7%9E%D7%9B%D7%95%D7%A0%D7%A1%D7%AA%20120-80.JPG', title: "מכונסת", folder: 'Collection 2', medium: 'אקריליק על קנבס', length: '120 ס"מ', width: '80 ס"מ' },
   { src: 'images/%D7%9E%D7%9E%D7%A2%D7%95%D7%A3%20%D7%94%D7%A6%D7%99%D7%A4%D7%95%D7%A8%20%20100-90.JPG', title: "ממעוף הציפור", folder: 'Collection 1', medium: 'אקריליק על קנבס', length: '100 ס"מ', width: '90 ס"מ' },
   { src: 'images/%D7%9E%D7%9E%D7%AA%D7%99%D7%A7%D7%99%D7%9D%20%D7%A1%D7%95%D7%93%20%2080-100.JPG', title: "ממתיקים סוד", folder: 'Collection 2', medium: 'אקריליק על קנבס', length: '80 ס"מ', width: '100 ס"מ' },
-  { src: 'images/%D7%9E%D7%A1%D7%A2%20%D7%91%D7%A1%D7%99%D7%9F%20%2070-100.JPG', title: "מסע בסין", folder: 'Collection 1', length: '70 ס"מ', width: '100 ס"מ' },
-  { src: 'images/%D7%9E%D7%A1%D7%A2%20%D7%91%D7%A1%D7%99%D7%9F%202%20%2070-100.JPG', title: "מסע בסין 2", folder: 'Collection 2', length: '70 ס"מ', width: '100 ס"מ' },
+  { src: 'images/%D7%9E%D7%A1%D7%A2%20%D7%91%D7%A1%D7%99%D7%9F%20%2070-100.JPG', title: "מסע בסין", folder: 'Sketches', medium: 'רישום', length: '70 ס"מ', width: '100 ס"מ' },
+  { src: 'images/%D7%9E%D7%A1%D7%A2%20%D7%91%D7%A1%D7%99%D7%9F%202%20%2070-100.JPG', title: "מסע בסין 2", folder: 'Sketches', medium: 'רישום', length: '70 ס"מ', width: '100 ס"מ' },
   { src: 'images/%D7%9E%D7%A4%D7%9C%20%20100-100.jpg', title: "מפל", folder: 'Collection 1', medium: 'אקריליק על קנבס', length: '100 ס"מ', width: '100 ס"מ' },
-  { src: 'images/%D7%9E%D7%A8%D7%A4%D7%A1%D7%95%D7%AA%20%20%D7%AA%D7%9C-%D7%90%D7%91%D7%99%D7%91%20004.jpg', title: "מרפסות תל אביב 4", folder: 'Collection 2' },
-  { src: 'images/%D7%9E%D7%A8%D7%A4%D7%A1%D7%95%D7%AA%20%20%D7%AA%D7%9C-%D7%90%D7%91%D7%99%D7%91%20005.jpg', title: "מרפסות תל אביב 5", folder: 'Collection 1' },
+  { src: 'images/%D7%9E%D7%A8%D7%A4%D7%A1%D7%95%D7%AA%20%20%D7%AA%D7%9C-%D7%90%D7%91%D7%99%D7%91%20004.jpg', title: "מרפסות תל אביב 4", folder: 'Collection 2', medium: 'טכניקה מעורבת על נייר' },
+  { src: 'images/%D7%9E%D7%A8%D7%A4%D7%A1%D7%95%D7%AA%20%20%D7%AA%D7%9C-%D7%90%D7%91%D7%99%D7%91%20005.jpg', title: "מרפסות תל אביב 5", folder: 'Collection 2', medium: 'טכניקה מעורבת על נייר' },
   { src: 'images/%D7%9E%D7%A8%D7%A4%D7%A1%D7%AA%20%D7%9E%D7%95%D7%9C%20%D7%9E%D7%A8%D7%A4%D7%A1%D7%AA%20120-70.jpg', title: "מרפסת מול מרפסת", folder: 'Collection 2', medium: 'אקריליק על קנבס', length: '120 ס"מ', width: '70 ס"מ' },
   { src: 'images/%D7%9E%D7%A9%D7%A4%D7%97%D7%94%20%20%D7%98%D7%9B%D7%A0%D7%99%D7%A7%D7%94%20%D7%9E%D7%A2%D7%95%D7%A8%D7%91%D7%AA%20%D7%A7%D7%95%D7%9C%D7%90%D7%96%20%2C%D7%A8%D7%99%D7%A9%D7%95%D7%9D%20%D7%95%D7%90%D7%A7%D7%A8%D7%99%D7%9C%D7%99%D7%A7%20%20%20100-70%20%D7%A1%D7%9E.JPG', title: "משפחה", folder: 'Collection 1', medium: "טכניקה מעורבת: קולאז', רישום ואקריליק", length: '100 ס"מ', width: '70 ס"מ' },
   { src: 'images/%D7%9E%D7%A9%D7%A4%D7%97%D7%94%20%D7%92%D7%93%D7%95%D7%9C%D7%94%20%20%D7%90%D7%A7%D7%A8%D7%99%D7%9C%D7%99%D7%A7%20%20%D7%A2%D7%9C%20%D7%A7%D7%A0%D7%91%D7%A1%20%2075-100%20%D7%A1%D7%9E.JPG', title: "משפחה גדולה", folder: 'Collection 2', medium: 'אקריליק על קנבס', length: '75 ס"מ', width: '100 ס"מ' },
   { src: 'images/%D7%9E%D7%A9%D7%A4%D7%97%D7%94%20%D7%A7%D7%98%D7%A0%D7%94%20%20%D7%90%D7%A7%D7%A8%D7%99%D7%9C%D7%99%D7%A7%20%D7%A2%D7%9C%20%D7%A7%D7%A0%D7%91%D7%A1%20%20%2040-60%20%D7%A1%D7%9E.JPG', title: "משפחה קטנה", folder: 'Collection 1', medium: 'אקריליק על קנבס', length: '40 ס"מ', width: '60 ס"מ' },
   { src: 'images/%D7%9E%D7%AA%D7%A2%D7%9E%D7%9C%D7%95%D7%AA%20%20100-100.jpg', title: "מתעמלות", folder: 'Collection 2', medium: 'אקריליק על קנבס', length: '100 ס"מ', width: '100 ס"מ' },
   { src: 'images/%D7%A0%D7%93%D7%99%D7%93%20%D7%A2%D7%93%D7%99%D7%9F%20%2070-100.JPG', title: "נדיד עדין", folder: 'Collection 1', medium: 'אקריליק על קנבס', length: '70 ס"מ', width: '100 ס"מ' },
-  { src: 'images/%D7%A0%D7%95%D7%95%D7%94%20%D7%A6%D7%93%D7%A7%202%20%2060-90.jpg', title: "נווה צדק 2", folder: 'Collection 2', medium: 'אקריליק על קנבס', length: '60 ס"מ', width: '90 ס"מ' },
+  { src: 'images/%D7%A0%D7%95%D7%95%D7%94%20%D7%A6%D7%93%D7%A7%202%20%2060-90.jpg', title: "נווה צדק", folder: 'Collection 2', medium: 'אקריליק על קנבס', length: '60 ס"מ', width: '90 ס"מ' },
   { src: 'images/%D7%A0%D7%95%D7%A3%2060-40.jpg', title: "נוף", folder: 'Collection 1', medium: 'אקריליק על קנבס', length: '60 ס"מ', width: '40 ס"מ' },
   { src: 'images/%D7%A0%D7%95%D7%A3%20%D7%95%D7%A8%D7%95%D7%93%20%2050-60.JPG', title: "נוף ורוד", folder: 'Collection 2', medium: 'אקריליק על קנבס', length: '50 ס"מ', width: '60 ס"מ' },
   { src: 'images/%D7%A0%D7%95%D7%A3%20%D7%9E%D7%9E%D7%A8%D7%A4%D7%A1%D7%AA%20120-100.jpg', title: "נוף ממרפסת", folder: 'Collection 1', medium: 'אקריליק על קנבס', length: '120 ס"מ', width: '100 ס"מ' },
@@ -630,14 +743,14 @@ const allPaintings = [
   { src: 'images/%D7%A0%D7%A9%D7%99%D7%9D%20%D7%91%D7%90%D7%93%D7%95%D7%9D%20%20%D7%90%D7%A7%D7%A8%D7%99%D7%9C%D7%99%D7%A7%20%D7%A2%D7%9C%20%D7%A7%D7%A0%D7%91%D7%A1%20%20100-70%20%D7%A1%D7%9E.JPG', title: "נשים באדום", folder: 'Collection 1', medium: 'אקריליק על קנבס', length: '100 ס"מ', width: '70 ס"מ' },
   { src: 'images/%D7%A0%D7%A9%D7%99%D7%9D%20%D7%91%D7%99%D7%9D%20%2095-135.JPG', title: "נשים בים", folder: 'Collection 2', medium: 'אקריליק על קנבס', length: '95 ס"מ', width: '135 ס"מ' },
   { src: 'images/%D7%A0%D7%A9%D7%99%D7%9D%20%D7%A4%D7%A1%D7%99%D7%9D%20%20100-150.JPG', title: "נשים פסים", folder: 'Collection 1', medium: 'אקריליק על קנבס', length: '100 ס"מ', width: '150 ס"מ' },
-  { src: 'images/%D7%A0%D7%A9%D7%99%D7%9D%20%D7%A4%D7%A1%D7%99%D7%9D%20%D7%90%20%20100-75.JPG', title: "נשים פסים א", folder: 'Collection 2', medium: 'אקריליק על קנבס', length: '100 ס"מ', width: '75 ס"מ' },
+  { src: 'images/%D7%A0%D7%A9%D7%99%D7%9D%20%D7%A4%D7%A1%D7%99%D7%9D%20%D7%90%20%20100-75.JPG', title: "נשים פסים א", folder: 'Collection 1', medium: 'אקריליק על קנבס', length: '100 ס"מ', width: '75 ס"מ' },
   { src: 'images/%D7%A0%D7%A9%D7%99%D7%9D%20%D7%A4%D7%A1%D7%99%D7%9D%20%D7%91%20%20100-75.JPG', title: "נשים פסים ב", folder: 'Collection 1', medium: 'אקריליק על קנבס', length: '100 ס"מ', width: '75 ס"מ' },
   { src: 'images/%D7%A1%D7%92%D7%95%D7%9C%20%20%20%20100-100.JPG', title: "סגול", folder: 'Collection 2', medium: 'אקריליק על קנבס', length: '100 ס"מ', width: '100 ס"מ' },
   { src: 'images/%D7%A1%D7%95%D7%9B%D7%AA%20%D7%92%D7%A4%D7%A0%D7%99%D7%9D%20%2080-120.JPG', title: "סוכת גפנים", folder: 'Collection 1', medium: 'אקריליק על קנבס', length: '80 ס"מ', width: '120 ס"מ' },
   { src: 'images/%D7%A1%D7%95%D7%A4%D7%A8%D7%AA%20%D7%9B%D7%91%D7%A9%D7%99%D7%9D%20%20%D7%90%D7%A7%D7%A8%D7%99%D7%9C%D7%99%D7%A7%20%D7%A2%D7%9C%20%D7%A7%D7%A0%D7%91%D7%A1%20%20100-75%20%D7%A1%D7%9E.JPG', title: "סופרת כבשים", folder: 'Collection 2', medium: 'אקריליק על קנבס', length: '100 ס"מ', width: '75 ס"מ' },
   { src: 'images/%D7%A1%D7%99%D7%A8%D7%95%D7%AA%20%2080-80.JPG', title: "סירות", folder: 'Collection 1', medium: 'אקריליק על קנבס', length: '80 ס"מ', width: '80 ס"מ' },
   { src: 'images/%D7%A1%D7%A8%D7%98%20%D7%A6%D7%99%D7%9C%D7%95%D7%9D%20%20100-80.JPG', title: "סרט צילום", folder: 'Collection 2', medium: 'אקריליק על קנבס', length: '100 ס"מ', width: '80 ס"מ' },
-  { src: 'images/%D7%A2%D7%91%D7%95%D7%93%D7%94%20%D7%A2%D7%91%D7%A8%D7%99%D7%AA%2080-180.jpg', title: "עבודה עברית", folder: 'Sculptures', length: '80 ס"מ', width: '180 ס"מ' },
+  { src: 'images/%D7%A2%D7%91%D7%95%D7%93%D7%94%20%D7%A2%D7%91%D7%A8%D7%99%D7%AA%2080-180.jpg', title: "עבודה עברית", folder: 'Sculptures', medium: "ג'יקלה", length: '80 ס"מ', width: '180 ס"מ' },
   { src: 'images/%D7%A2%D7%91%D7%A8%20%2050-40.jpg', title: "עבר", folder: 'Collection 1', length: '50 ס"מ', width: '40 ס"מ' },
   { src: 'images/%D7%A2%D7%9B%D7%95%20%20%D7%90%D7%A7%D7%A8%D7%99%D7%9C%D7%99%D7%A7%20%D7%A2%D7%9C%20%D7%A7%D7%A0%D7%91%D7%A1%20%2060-120%20%D7%A1%D7%9E.JPG', title: "עכו", folder: 'Collection 2', medium: 'אקריליק על קנבס', length: '60 ס"מ', width: '120 ס"מ' },
   { src: 'images/%D7%A2%D7%A8%D7%91%20%20%D7%91%D7%92%D7%9C%D7%99%D7%9C%20%D7%90%D7%A7%D7%A8%D7%99%D7%9C%D7%99%D7%A7%20%D7%A2%D7%9C%20%D7%A7%D7%A0%D7%91%D7%A1%20%2060-120%20%D7%A1%D7%9E.JPG', title: "ערב בגליל", folder: 'Collection 1', medium: 'אקריליק על קנבס', length: '60 ס"מ', width: '120 ס"מ' },
@@ -646,44 +759,44 @@ const allPaintings = [
   { src: 'images/%D7%A4%D7%9C%D7%95%D7%A8%D7%A0%D7%98%D7%99%D7%9F%20%2060-120.JPG', title: "פלורנטין", folder: 'Collection 2', medium: 'אקריליק על קנבס', length: '60 ס"מ', width: '120 ס"מ' },
   { src: 'images/%D7%A4%D7%A8%D7%A9%D7%AA%20%D7%93%D7%A8%D7%9B%D7%99%D7%9D%20150-100.JPG', title: "פרשת דרכים", folder: 'Collection 1', medium: 'אקריליק על קנבס', length: '150 ס"מ', width: '100 ס"מ' },
   { src: 'images/%D7%A7%D7%95%D7%9C%D7%90%D7%96%20%D7%A8%D7%99%D7%A9%D7%95%D7%9E%D7%99%20%20120-80.JPG', title: "קולאז רישומי 1", folder: 'Collection 2', medium: 'אקריליק על קנבס', length: '120 ס"מ', width: '80 ס"מ' },
-  { src: 'images/%D7%A7%D7%95%D7%9C%D7%90%D7%96%20%D7%A8%D7%99%D7%A9%D7%95%D7%9E%D7%99%20110-90.jpg', title: "קולאז' רישומי 2", folder: 'Collection 1', medium: 'אקריליק על קנבס', length: '110 ס"מ', width: '90 ס"מ' },
+  { src: 'images/%D7%A7%D7%95%D7%9C%D7%90%D7%96%20%D7%A8%D7%99%D7%A9%D7%95%D7%9E%D7%99%20110-90.jpg', title: "קולאז' רישומי 2", folder: 'Collection 2', medium: 'אקריליק על קנבס', length: '110 ס"מ', width: '90 ס"מ' },
   { src: 'images/%D7%A7%D7%95%D7%9C%D7%90%D7%96%20%D7%AA%D7%9C%20%D7%90%D7%91%D7%99%D7%91%20%D7%91%D7%A9%D7%97%D7%95%D7%A8%20%D7%9C%D7%91%D7%9F%20%20%D7%90%D7%A7%D7%A8%D7%99%D7%9C%D7%99%D7%A7%20%20%20100-70%20%D7%A1%D7%9E.JPG', title: "קולאז' תל אביב בשחור לבן", folder: 'Collection 2', medium: 'אקריליק על קנבס', length: '100 ס"מ', width: '70 ס"מ' },
   { src: 'images/%D7%A7%D7%AA%D7%99%20120-100.JPG', title: "קתי", folder: 'Collection 1', medium: 'אקריליק על קנבס', length: '120 ס"מ', width: '100 ס"מ' },
   { src: 'images/%D7%A8%D7%92%D7%A2%20%D7%90%D7%99%D7%A0%D7%98%D7%99%D7%9E%D7%99%20%20100-50.JPG', title: "רגע אינטימי", folder: 'Collection 2', medium: 'אקריליק על קנבס', length: '100 ס"מ', width: '50 ס"מ' },
   { src: 'images/%D7%A9%D7%93%D7%95%D7%AA%20%D7%94%D7%A2%D7%9E%D7%A7%20%20%D7%90%D7%A7%D7%A8%D7%99%D7%9C%D7%99%D7%A7%20%D7%A2%D7%9C%20%D7%A7%D7%A0%D7%91%D7%A1%20%20110-160%20%20%D7%A1%D7%9E.JPG', title: "שדות העמק", folder: 'Collection 1', medium: 'אקריליק על קנבס', length: '110 ס"מ', width: '160 ס"מ' },
   { src: 'images/%D7%A9%D7%95%D7%9C%D7%97%D7%9F%20%D7%9C%D7%A9%D7%A0%D7%99%D7%99%D7%9D%20%20%D7%90%D7%A7%D7%A8%D7%99%D7%9C%D7%99%D7%A7%20%D7%A2%D7%9C%20%D7%A7%D7%A0%D7%91%D7%A1%20%2060-80%20%20%D7%A1%D7%9E.jpg', title: "שולחן לשניים", folder: 'Collection 2', medium: 'אקריליק על קנבס', length: '60 ס"מ', width: '80 ס"מ' },
-  { src: 'images/%D7%A9%D7%97%D7%95%D7%A8%20%20120-120.JPG', title: "שחור", folder: 'Collection 1', medium: 'אקריליק על קנבס', length: '120 ס"מ', width: '120 ס"מ' },
+  { src: 'images/%D7%A9%D7%97%D7%95%D7%A8%20%20120-120.JPG', title: "שחור", folder: 'Collection 2', medium: 'אקריליק על קנבס', length: '120 ס"מ', width: '120 ס"מ' },
   { src: 'images/%D7%A9%D7%97%D7%95%D7%A8%20%D7%95%D7%A6%D7%94%D7%95%D7%91%20%20120-90.JPG', title: "שחור וצהוב", folder: 'Collection 2', medium: 'אקריליק על קנבס', length: '120 ס"מ', width: '90 ס"מ' },
   { src: 'images/%D7%A9%D7%99%D7%97%20%D7%A0%D7%A9%D7%99%D7%9D%20%20100-90.jpg', title: "שיח נשים", folder: 'Collection 1', medium: 'אקריליק על קנבס', length: '100 ס"מ', width: '90 ס"מ' },
-  { src: 'images/%D7%A9%D7%9C%D7%95%D7%A9%D7%94%20%D7%9E%D7%A6%D7%91%D7%99%D7%9D%20%20%D7%98%D7%A8%D7%99%D7%A4%D7%98%D7%99%D7%9B%D7%95%D7%9F%20%2060-90.jpg', title: "שלושה מצבים", folder: 'Collection 2', medium: 'טריפטיכון', length: '60 ס"מ', width: '90 ס"מ' },
+  { src: 'images/%D7%A9%D7%9C%D7%95%D7%A9%D7%94%20%D7%9E%D7%A6%D7%91%D7%99%D7%9D%20%20%D7%98%D7%A8%D7%99%D7%A4%D7%98%D7%99%D7%9B%D7%95%D7%9F%20%2060-90.jpg', title: "שלושה מצבים", folder: 'Collection 2', medium: 'טריפטיכון.\nאקריליק על קנבס', length: '60 ס"מ', width: '90 ס"מ' },
   { src: 'images/%D7%AA%D7%90%D7%99%D7%9D%20%20100-80.JPG', title: "תאים", folder: 'Collection 1', medium: 'אקריליק על קנבס', length: '100 ס"מ', width: '80 ס"מ' },
-  { src: 'images/%D7%AA%D7%9E%D7%95%D7%A0%D7%94%5B1%5D%20%2810%29.JPG', title: "תמונה בלי שם 1", folder: 'Collection 2', medium: 'אקריליק על קנבס', length: '100 ס"מ', width: '70 ס"מ' },
-  { src: 'images/%D7%AA%D7%9E%D7%95%D7%A0%D7%94%5B1%5D%20%2811%29.JPG', title: "תמונה בלי שם 2", folder: 'Collection 1', length: '40 ס"מ', width: '45 ס"מ' },
-  { src: 'images/%D7%AA%D7%9E%D7%95%D7%A0%D7%94%5B1%5D%20%2812%29.JPG', title: "רישום 20", folder: 'Sketches', medium: 'רישום', length: '40 ס"מ', width: '30 ס"מ' },
-  { src: 'images/%D7%AA%D7%9E%D7%95%D7%A0%D7%94%5B1%5D%20%2813%29.JPG', title: "תמונה בלי שם 3", folder: 'Collection 1', length: '40 ס"מ', width: '50 ס"מ' },
-  { src: 'images/%D7%AA%D7%9E%D7%95%D7%A0%D7%94%5B1%5D%20%2814%29.JPG', title: "תמונה בלי שם 4", folder: 'Collection 2', length: '50 ס"מ', width: '40 ס"מ' },
-  { src: 'images/%D7%AA%D7%9E%D7%95%D7%A0%D7%94%5B1%5D%20%282%29.JPG', title: "רישום 12", folder: 'Sketches', medium: 'רישום על נייר A4', length: '21 ס"מ', width: '30 ס"מ' },
-  { src: 'images/%D7%AA%D7%9E%D7%95%D7%A0%D7%94%5B1%5D%20%283%29.JPG', title: "רישום 13", folder: 'Sketches', medium: 'רישום על נייר A4', length: '21 ס"מ', width: '30 ס"מ' },
-  { src: 'images/%D7%AA%D7%9E%D7%95%D7%A0%D7%94%5B1%5D%20%284%29.JPG', title: "רישום 14", folder: 'Sketches', medium: 'רישום על נייר A4', length: '21 ס"מ', width: '30 ס"מ' },
-  { src: 'images/%D7%AA%D7%9E%D7%95%D7%A0%D7%94%5B1%5D%20%285%29.JPG', title: "רישום 15", folder: 'Sketches', medium: 'רישום על נייר A4', length: '21 ס"מ', width: '30 ס"מ' },
-  { src: 'images/%D7%AA%D7%9E%D7%95%D7%A0%D7%94%5B1%5D%20%286%29.JPG', title: "תמונה בלי שם 5", folder: 'Collection 1' },
-  { src: 'images/%D7%AA%D7%9E%D7%95%D7%A0%D7%94%5B1%5D%20%287%29.JPG', title: "תמונה בלי שם 6", folder: 'Collection 2', length: '30 ס"מ', width: '20 ס"מ' },
-  { src: 'images/%D7%AA%D7%9E%D7%95%D7%A0%D7%94%5B1%5D%20%288%29.JPG', title: "תמונה בלי שם 7", folder: 'Collection 1', length: '30 ס"מ', width: '25 ס"מ' },
-  { src: 'images/%D7%AA%D7%9E%D7%95%D7%A0%D7%94%5B1%5D%20%289%29.JPG', title: "תמונה בלי שם 8", folder: 'Collection 2', length: '40 ס"מ', width: '40 ס"מ' },
-  { src: 'images/%D7%AA%D7%9E%D7%95%D7%A0%D7%94%5B1%5D.JPG', title: "רישום - בן", folder: 'Sketches', medium: 'רישום' },
-  { src: 'images/%D7%AA%D7%9E%D7%95%D7%A0%D7%94%5B2%5D%20%282%29.JPG', title: "רישום 16", folder: 'Sketches', medium: 'רישום על נייר A4', length: '21 ס"מ', width: '30 ס"מ' },
-  { src: 'images/%D7%AA%D7%9E%D7%95%D7%A0%D7%94%5B2%5D%20%283%29.JPG', title: "רישום 17", folder: 'Sketches', medium: 'רישום על נייר A4', length: '21 ס"מ', width: '30 ס"מ' },
-  { src: 'images/%D7%AA%D7%9E%D7%95%D7%A0%D7%94%5B2%5D%20%284%29.JPG', title: "תמונה בלי שם 9", folder: 'Collection 2', length: '30 ס"מ', width: '25 ס"מ' },
-  { src: 'images/%D7%AA%D7%9E%D7%95%D7%A0%D7%94%5B2%5D%20%285%29.JPG', title: "תמונה בלי שם 10", folder: 'Collection 1', length: '40 ס"מ', width: '30 ס"מ' },
-  { src: 'images/%D7%AA%D7%9E%D7%95%D7%A0%D7%94%5B2%5D%20%286%29.JPG', title: "רישום 18", folder: 'Sketches', medium: 'רישום', length: '23 ס"מ', width: '20 ס"מ' },
-  { src: 'images/%D7%AA%D7%9E%D7%95%D7%A0%D7%94%5B2%5D.JPG', title: "רישום 19", folder: 'Sketches', medium: 'רישום על נייר A4', length: '21 ס"מ', width: '30 ס"מ' },
+  { src: 'images/%D7%AA%D7%9E%D7%95%D7%A0%D7%94%5B1%5D%20%2810%29.JPG', title: "פינה בפרוזדור", folder: 'Collection 2', medium: 'אקריליק על קנבס', length: '100 ס"מ', width: '70 ס"מ' },
+  { src: 'images/%D7%AA%D7%9E%D7%95%D7%A0%D7%94%5B1%5D%20%2812%29.JPG', title: "רישום 47", folder: 'Sketches', medium: 'רישום', length: '40 ס"מ', width: '30 ס"מ' },
+  { src: 'images/%D7%AA%D7%9E%D7%95%D7%A0%D7%94%5B1%5D%20%2813%29.JPG', title: "סיפורי עם", folder: 'Sketches', medium: 'רישום', length: '40 ס"מ', width: '50 ס"מ' },
+  { src: 'images/%D7%AA%D7%9E%D7%95%D7%A0%D7%94%5B2%5D%20%285%29.JPG', title: "דיוקן", folder: 'Collection 2', medium: 'אקריליק על קנבס', length: '40 ס"מ', width: '30 ס"מ' },
+  { src: 'images/%D7%AA%D7%9E%D7%95%D7%A0%D7%94%5B1%5D%20%2811%29.JPG', title: "דיוקן 2", folder: 'Collection 2', length: '40 ס"מ', width: '45 ס"מ' },
+  { src: 'images/%D7%AA%D7%9E%D7%95%D7%A0%D7%94%5B1%5D%20%287%29.JPG', title: "דיוקן עצמי 3", folder: 'Collection 2', length: '30 ס"מ', width: '20 ס"מ' },
+  { src: 'images/%D7%AA%D7%9E%D7%95%D7%A0%D7%94%5B1%5D%20%286%29.JPG', title: "איש בחלון", folder: 'Collection 1', length: '25 ס"מ', width: '25 ס"מ' },
+  { src: 'images/%D7%AA%D7%9E%D7%95%D7%A0%D7%94%5B1%5D%20%288%29.JPG', title: "אישה בכורסה", folder: 'Collection 1', length: '30 ס"מ', width: '25 ס"מ' },
+  { src: 'images/%D7%AA%D7%9E%D7%95%D7%A0%D7%94%5B2%5D%20%284%29.JPG', title: "קשה", folder: 'Collection 2', length: '30 ס"מ', width: '25 ס"מ' },
+  { src: 'images/%D7%AA%D7%9E%D7%95%D7%A0%D7%94%5B2%5D%20%286%29.JPG', title: "שתי גבירות", folder: 'Sketches', medium: 'רישום', length: '23 ס"מ', width: '20 ס"מ' },
   { src: 'images/%D7%AA%D7%9E%D7%95%D7%A0%D7%94%5B3%5D.JPG', title: "בחירות", folder: 'Sketches', medium: 'רישום', length: '40 ס"מ', width: '25 ס"מ' },
+  { src: 'images/%D7%AA%D7%9E%D7%95%D7%A0%D7%94%5B1%5D%20%2814%29.JPG', title: "דיוקן עצמי 1", folder: 'Sketches', medium: 'רישום', length: '50 ס"מ', width: '40 ס"מ' },
+  { src: 'images/%D7%AA%D7%9E%D7%95%D7%A0%D7%94%5B1%5D%20%289%29.JPG', title: "דיוקן עצמי 2", folder: 'Sketches', medium: 'רישום', length: '40 ס"מ', width: '40 ס"מ' },
   { src: 'images/%D7%AA%D7%9E%D7%95%D7%A0%D7%95%D7%AA%20%D7%A9%D7%91%D7%90%D7%9C%D7%91%D7%95%D7%9D%20100-75.JPG', title: "תמונות שבאלבום", folder: 'Collection 1', medium: 'אקריליק על קנבס', length: '100 ס"מ', width: '75 ס"מ' },
-  { src: 'images/1-2%20%D7%A8%D7%95%D7%A7%D7%93%D7%95%D7%AA.JPG', title: "1-2 רוקדות", folder: 'Sculptures', medium: 'רשת', length: '120 ס"מ', width: '60 ס"מ' },
-  { src: 'images/%D7%AA%D7%9E%D7%95%D7%A0%D7%AA%20%D7%A8%D7%A9%D7%AA%2001.jpeg', title: "תמונת רשת 01", folder: 'Sculptures', medium: 'רשת', length: '80 ס"מ', width: '100 ס"מ' },
-  { src: 'images/%D7%A0%D7%97%D7%99%D7%AA%D7%94%20%D7%9E%D7%95%D7%A9%D7%9C%D7%9E%D7%AA.jpeg', title: "נחיתה מושלמת", folder: 'Sketches', medium: 'רישום עם כתמי דיו', length: '25 ס"מ', width: '30 ס"מ' },
-  { src: 'images/%D7%AA%D7%9E%D7%95%D7%A0%D7%94%20%D7%91%D7%9C%D7%99%20%D7%A9%D7%9D%2026.jpeg', title: "תמונה בלי שם 26", folder: 'Collection 2', length: '24 ס"מ', width: '22 ס"מ' },
-  { src: 'images/%D7%AA%D7%9E%D7%95%D7%A0%D7%94%20%D7%91%D7%9C%D7%99%20%D7%A9%D7%9D%2027.jpeg', title: "תמונה בלי שם 27", folder: 'Collection 2', length: '33 ס"מ', width: '39 ס"מ' },
+  { src: 'images/1-2%20%D7%A8%D7%95%D7%A7%D7%93%D7%95%D7%AA.JPG', title: "רוקדות", folder: 'Sculptures', medium: 'פיסול ברשת', length: '120 ס"מ', width: '60 ס"מ' },
+  { src: 'images/%D7%AA%D7%9E%D7%95%D7%A0%D7%AA%20%D7%A8%D7%A9%D7%AA%2001.jpeg', title: "תנוחות עובריות", folder: 'Sculptures', medium: 'פיסול ברשת', length: '80 ס"מ', width: '100 ס"מ' },
+  { src: 'images/%D7%AA%D7%9E%D7%95%D7%A0%D7%94%20%D7%91%D7%9C%D7%99%20%D7%A9%D7%9D%2026.jpeg', title: "פרט נוף בודד", folder: 'Sketches', medium: 'רישום', length: '24 ס"מ', width: '22 ס"מ' },
+  { src: 'images/%D7%AA%D7%9E%D7%95%D7%A0%D7%94%20%D7%91%D7%9C%D7%99%20%D7%A9%D7%9D%2027.jpeg', title: "בניטו", folder: 'Sketches', medium: 'רישום', length: '33 ס"מ', width: '39 ס"מ' },
+  { src: 'images/%D7%AA%D7%9E%D7%95%D7%A0%D7%94%5B1%5D%20%282%29.JPG', title: "נועם", folder: 'Sketches', medium: 'רישום על נייר A4', length: '21 ס"מ', width: '30 ס"מ' },
+  { src: 'images/%D7%AA%D7%9E%D7%95%D7%A0%D7%94%5B1%5D%20%283%29.JPG', title: "תמונת מחזור", folder: 'Sketches', medium: 'רישום על נייר A4', length: '21 ס"מ', width: '30 ס"מ' },
+  { src: 'images/%D7%AA%D7%9E%D7%95%D7%A0%D7%94%5B1%5D%20%284%29.JPG', title: "תמונת מחזור 2", folder: 'Sketches', medium: 'רישום על נייר A4', length: '21 ס"מ', width: '30 ס"מ' },
+  { src: 'images/%D7%AA%D7%9E%D7%95%D7%A0%D7%94%5B1%5D%20%285%29.JPG', title: "על המים", folder: 'Sketches', medium: 'רישום על נייר A4', length: '21 ס"מ', width: '30 ס"מ' },
+  { src: 'images/%D7%AA%D7%9E%D7%95%D7%A0%D7%94%5B2%5D%20%282%29.JPG', title: "עונת נדידה", folder: 'Sketches', medium: 'רישום על נייר A4', length: '21 ס"מ', width: '30 ס"מ' },
+  { src: 'images/%D7%AA%D7%9E%D7%95%D7%A0%D7%94%5B2%5D%20%283%29.JPG', title: "קרבות אויר", folder: 'Sketches', medium: 'רישום על נייר A4', length: '21 ס"מ', width: '30 ס"מ' },
+  { src: 'images/%D7%AA%D7%9E%D7%95%D7%A0%D7%94%5B2%5D.JPG', title: "נימפות", folder: 'Sketches', medium: 'רישום על נייר A4', length: '21 ס"מ', width: '30 ס"מ' },
+  { src: 'images/%D7%90%D7%95%D7%93%D7%99%2020-13.JPG', title: "אודי", folder: 'Sketches', medium: 'רישום', length: '20 ס"מ', width: '13 ס"מ', noCarousel: true },
+  { src: 'images/%D7%AA%D7%9E%D7%95%D7%A0%D7%94%5B1%5D.JPG', title: "בן", folder: 'Sketches', medium: 'רישום', noCarousel: true },
   { src: 'Digital%20images/%D7%A8%D7%99%D7%A9%D7%95%D7%9D%20%D7%93%D7%99%D7%92%D7%99%D7%98%D7%9C%D7%99%2001.jpeg', title: "רישום דיגיטלי 01", folder: 'Digital', medium: 'רישום דיגיטלי' },
   { src: 'Digital%20images/%D7%A8%D7%99%D7%A9%D7%95%D7%9D%20%D7%93%D7%99%D7%92%D7%99%D7%98%D7%9C%D7%99%2002.jpeg', title: "רישום דיגיטלי 02", folder: 'Digital', medium: 'רישום דיגיטלי' },
   { src: 'Digital%20images/%D7%A8%D7%99%D7%A9%D7%95%D7%9D%20%D7%93%D7%99%D7%92%D7%99%D7%98%D7%9C%D7%99%2003.jpeg', title: "רישום דיגיטלי 03", folder: 'Digital', medium: 'רישום דיגיטלי' },
@@ -709,19 +822,31 @@ const folders = [
 function mod(n, m) { return ((n % m) + m) % m; }
 
 /* Slideshow */
-const leftPaintings  = allPaintings.filter(p => p.folder === 'Sketches' || p.folder === 'Sculptures');
-const rightPaintings = allPaintings.filter(p => p.folder === 'Collection 1' || p.folder === 'Collection 2');
+const leftPaintings  = allPaintings.filter(p => (p.folder === 'Sketches' || p.folder === 'Sculptures') && !p.noCarousel);
+const rightPaintings = allPaintings.filter(p => (p.folder === 'Collection 1' || p.folder === 'Collection 2') && !p.noCarousel);
 
-function makeSlideshow(imgEl, nameEl, frameEl, paintings, allIdx) {
+function makeSlideshow(imgEl, nameEl, frameEl, paintings) {
   let idx = Math.floor(Math.random() * paintings.length);
+  const preloaded = {};
+
+  function preloadNext() {
+    const nextSrc = paintings[mod(idx + 1, paintings.length)].src;
+    if (!preloaded[nextSrc]) {
+      const img = new Image();
+      img.src = nextSrc;
+      preloaded[nextSrc] = img;
+    }
+  }
+
   function show(animate) {
     const p = paintings[idx];
     if (animate) {
       imgEl.classList.add('fading');
-      setTimeout(() => { imgEl.src = p.src; imgEl.classList.remove('fading'); }, 500);
-    } else { imgEl.src = p.src; }
-    nameEl.textContent = p.title;
+      setTimeout(() => { imgEl.src = p.src; nameEl.textContent = p.title; imgEl.classList.remove('fading'); }, 500);
+    } else { imgEl.src = p.src; nameEl.textContent = p.title; }
+    preloadNext();
   }
+
   show(false);
   frameEl.onclick = () => openLightbox(paintings[idx].folder, idx, paintings);
   setInterval(() => {
@@ -765,7 +890,10 @@ folders.forEach(folder => {
 
 /* All works grid */
 const allWorksGrid = document.getElementById('all-works-grid');
-allPaintings.forEach((p, i) => {
+const awOrder = allPaintings.map((p, i) => ({ p, i }));
+const awMoved = awOrder.splice(0, 2);
+awOrder.splice(14, 0, ...awMoved);
+awOrder.forEach(({ p, i }) => {
   const item = document.createElement('div');
   item.className = 'aw-item';
   item.innerHTML = `<img src="${p.src}" alt="${p.title}" loading="lazy">`;
@@ -791,8 +919,21 @@ function renderLb(animate) {
   } else { img.src = p.src; }
   document.getElementById('lb-title').textContent  = p.title;
   document.getElementById('lb-medium').textContent = p.medium ? '• ' + p.medium : '';
-  document.getElementById('lb-length').textContent = p.length || '—';
-  document.getElementById('lb-width').textContent  = p.width  || '—';
+  const dimsEl = document.getElementById('lb-dims');
+  if (p.length || p.width) {
+    dimsEl.style.display = '';
+    document.getElementById('lb-length').textContent = p.length || '—';
+    document.getElementById('lb-width').textContent  = p.width  || '—';
+  } else {
+    dimsEl.style.display = 'none';
+  }
+  const priceBtn = document.getElementById('lb-price-btn');
+  if (p.price) {
+    priceBtn.classList.remove('hidden');
+    document.getElementById('lb-price-amount').textContent = '₪ ' + p.price.toLocaleString();
+  } else {
+    priceBtn.classList.add('hidden');
+  }
   const dotsEl = document.getElementById('lb-dots');
   dotsEl.innerHTML = '';
   if (lbPaintings.length > 1) {
@@ -823,6 +964,10 @@ document.getElementById('lb-img-wrap').addEventListener('touchend', e => {
 document.getElementById('nav-about').onclick = () => document.getElementById('about-modal').classList.add('open');
 document.getElementById('about-close').onclick  = () => document.getElementById('about-modal').classList.remove('open');
 document.getElementById('about-modal').onclick = e => { if (e.target === document.getElementById('about-modal')) document.getElementById('about-modal').classList.remove('open'); };
+
+document.getElementById('nav-contact').onclick = () => document.getElementById('contact-modal').classList.add('open');
+document.getElementById('contact-close').onclick = () => document.getElementById('contact-modal').classList.remove('open');
+document.getElementById('contact-modal').onclick = e => { if (e.target === document.getElementById('contact-modal')) document.getElementById('contact-modal').classList.remove('open'); };
 
 document.addEventListener('keydown', e => {
   if (!document.getElementById('lightbox').classList.contains('open')) return;
