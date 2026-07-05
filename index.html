@@ -251,11 +251,13 @@
   #lb-next { right: 24px; }
   .lb-arrow:hover { border-color: #7a5c3a; color: #3d2b1a; }
   .lb-img-row {
-    display: flex; align-items: flex-end; justify-content: center; gap: 24px; direction: ltr;
+    display: flex; align-items: flex-end; justify-content: center; gap: 24px;
   }
   .lb-side {
+    position: fixed; bottom: 32px; right: 32px;
     display: flex; flex-direction: column;
-    height: calc(100vh - 120px); min-width: 110px; max-width: 150px;
+    max-width: 150px; z-index: 999;
+    background: rgba(249,243,236,0.92); padding: 12px 16px; border-radius: 4px;
   }
   .lb-img-wrap {
     border: 8px solid #c4a882;
@@ -401,7 +403,7 @@
     .lb-img-row { flex-direction: column; gap: 12px; align-items: center; }
     .lb-img-col { width: 88vw; }
     .lb-img-wrap { border-width: 5px; width: 88vw; height: 46vh; }
-    .lb-side { height: auto; width: 88vw; max-width: unset; }
+    .lb-side { position: static; height: auto; width: 88vw; max-width: unset; background: none; padding: 0; }
     .lb-dims { flex-direction: row; gap: 20px; min-width: unset; height: auto; margin: 12px 0 0 0; }
     .lb-price-btn { margin-top: 16px; }
     .lb-medium-val { font-size: 14px; align-self: center; text-align: center; }
@@ -589,6 +591,12 @@
     <button class="lb-arrow" id="lb-prev" type="button">&#8592;</button>
     <div>
       <div class="lb-img-row">
+        <div class="lb-img-col">
+          <div class="lb-info">
+            <div class="lb-title" id="lb-title"></div>
+          </div>
+          <div class="lb-img-wrap" id="lb-img-wrap"><img id="lb-img" src="" alt=""></div>
+        </div>
         <div class="lb-side">
           <div class="lb-medium-val" id="lb-medium"></div>
           <div class="lb-dims" id="lb-dims">
@@ -606,12 +614,6 @@
           <a class="lb-price-btn hidden" id="lb-price-btn" href="#" target="_blank">
             <span class="lb-price-amount" id="lb-price-amount"></span>
           </a>
-        </div>
-        <div class="lb-img-col">
-          <div class="lb-info">
-            <div class="lb-title" id="lb-title"></div>
-          </div>
-          <div class="lb-img-wrap" id="lb-img-wrap"><img id="lb-img" src="" alt=""></div>
         </div>
       </div>
       <div class="lb-dots" id="lb-dots"></div>
